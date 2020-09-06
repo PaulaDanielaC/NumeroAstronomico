@@ -1,13 +1,13 @@
-#include "NumeroAstronomico.h"
+#include <NumeroAstronomico.h>
+#include <creacion_op.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <stdio.h>
 
-char* agregarCerosAlfinal(int);
-int obtenerNumeroRandom();
-
-/* Operaciones de creacion */
+static char* agregarCerosAlfinal(int);
+static int obtenerNumeroRandom();
 
 NumeroAstronomico* crearDesdeCadena(char* cadena, unsigned int longCadena) {
     NumeroAstronomico* numAstro = malloc(sizeof(NumeroAstronomico));
@@ -51,58 +51,16 @@ NumeroAstronomico* crearAleatorio() {
     return numAstro;
 }
 
-/* Operaciones de manejo de errores */
-
-int esSecuenciaNula(NumeroAstronomico* numero) {
-    return numero->entero == NULL;
-}
-
-int esSecuenciaInvalida(NumeroAstronomico* numero) {
-    return numero->longitudError == CadenaInvalida;
-}
-
-int esOverflow(NumeroAstronomico* numero) {
-    return numero->longitudError == Overflow;
-}
-
-int esPunteroNulo(NumeroAstronomico* numero) {
-    return numero == NULL;
-}
-
-/*TipoDeError getTipoDeError(NumeroAstronomico* numero) {
-    Preguntar esto
-}*/
-
 /* Operacion auxiliares */
 
-int obtenerNumeroRandom() {
+static int obtenerNumeroRandom() {
     time_t sysTime;
     srand((unsigned) time(&sysTime));
     return rand();
 }
 
-char* agregarCerosAlfinal(int cantidad) {
+static char* agregarCerosAlfinal(int cantidad) {
     char* cadenaCeros = malloc(cantidad);
     memset(cadenaCeros, '0', cantidad);
     return cadenaCeros;
-}
-
-
-// Pa' probar, el main hay que volarlo
-int main() {
-    NumeroAstronomico* num = crearDesdeCadena("345748765345435000000000000000", 30);
-    printf("crearDesdeCadena: %s\n", num->entero);
-    printf("longitud: %i\n", num->longitudError);
-
-    num = crearDesdeCifraSeguidaDeCeros(15, 10);
-    printf("crearDesdeCifraSeguidaDeCeros: %s\n", num->entero);
-    printf("longitud: %i\n", num->longitudError);
-
-    num = crearAleatorio();
-    printf("crearAleatorio: %s\n", num->entero);
-    printf("longitud: %i\n", num->longitudError);
-
-    free(num->entero);
-    free(num);
-    return 0;
 }
