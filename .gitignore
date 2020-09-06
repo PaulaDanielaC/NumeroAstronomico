@@ -1,4 +1,4 @@
 #ignore visual code related files
-/.vscode
+.vscode
 #ignore executables
 *.exe
