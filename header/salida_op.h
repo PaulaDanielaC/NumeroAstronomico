@@ -3,6 +3,6 @@
 
 #include "NumeroAstronomico.h"
 
-void mostrar(NumeroAstronomico*, unsigned int); //Mostrar(na, 3, stdout1)
+void mostrar(NumeroAstronomico*, unsigned int);
 
 #endif

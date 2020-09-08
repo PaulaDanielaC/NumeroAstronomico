@@ -2,6 +2,9 @@
 
 NumeroAstronomico* sumar(NumeroAstronomico* num1, NumeroAstronomico* num2) {
     NumeroAstronomico* result;
+    unsigned int carry;
+    unsigned int overflow;
+
     return result;
 }
 
