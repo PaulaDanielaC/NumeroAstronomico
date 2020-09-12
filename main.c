@@ -4,7 +4,7 @@
 int main() {
     int opcion;
     NumeroAstronomico* result;
- 
+
     printf("Calculadora de Numeros Astronomicos\nSeleccione la operacion que quiera realizar:\n");
     printf("1.Sumar valores\n2.Verificar igualdad de dos numeros\n3.Verificar menor valor\n"
            "4.Guardar resultados\n5.Cargar resultados\n6.Salir\n");
@@ -17,7 +17,7 @@ int main() {
         break;
     case 2:
         system("cls");
-        verificarIgualdad(result);
+        verificarIgualdad();
         break;
     case 3:
         system("cls");

@@ -44,10 +44,10 @@ NumeroAstronomico* crearDesdeCifraSeguidaDeCeros(unsigned int cifra, unsigned in
 NumeroAstronomico* crearAleatorio() {
     NumeroAstronomico* numAstro = malloc(sizeof(NumeroAstronomico));
     int cifra = obtenerNumeroRandom();
-
+    printf("Numero que genere %i", cifra);
     numAstro->entero = malloc(cifra);
     sprintf(numAstro->entero, "%d", cifra);
-    numAstro->longitudError = Ninguno; //TODO: Calcular long del numero, too tired for that now
+    numAstro->longitudError = strlen(numAstro->entero);
     return numAstro;
 }
 

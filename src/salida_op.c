@@ -4,5 +4,5 @@
 void mostrar(NumeroAstronomico* num, unsigned int cantLineas) {
 
     int cantCaracteres = num->longitudError;
-    printf("\n");
+    printf("Resultado: %s\n", num->entero);
 }

@@ -30,12 +30,16 @@ NumeroAstronomico* realizarSuma() {
     return result;
 }
 
-void verificarIgualdad(NumeroAstronomico* num1) {
-    NumeroAstronomico* num2;
+void verificarIgualdad() {
+    NumeroAstronomico* num1, *num2;
 
-    printf("Especificar otro valor:\n");
+    printf("Primer valor:\n");
+    num1 = crearNumero();
+    printf("Segundo valor:\n");
     num2 = crearNumero();
-    sonIguales(num1, num2);
+
+    int verificaIgualdad = sonIguales(num1, num2);
+    printf("%i\n", verificaIgualdad); //TODO: Armar mensaje
 }
 
 void obtenerMenor(NumeroAstronomico* num1) {
@@ -88,12 +92,14 @@ Texto* obtenerDigitosInput() {
         }
 
 //      Re horrible esto, I know
-        memcpy(&texto->string[2], texto->string, cant);
+        /*memcpy(&texto->string[2], texto->string, cant);
         texto->string[0] = '0';
         texto->string[1] = '0';
         texto->string[cant+2] = '\0';
-        texto->longitud = cant + 2; //Para overflow y carry
-        printf("%s\n", texto->string);
+
+        printf("%s\n", texto->string);*/
+
+        texto->longitud = cant;
     }
 
     return texto;
