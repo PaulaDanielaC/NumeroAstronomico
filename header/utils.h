@@ -6,7 +6,7 @@
 
 NumeroAstronomico* realizarSuma();
 void verificarIgualdad();
-void obtenerMenor(NumeroAstronomico*);
+void obtenerMenor();
 void guardarResultado(NumeroAstronomico*);
 NumeroAstronomico* cargarResultado();
 void limpiarResultado(NumeroAstronomico*);

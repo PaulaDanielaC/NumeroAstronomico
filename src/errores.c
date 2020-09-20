@@ -17,6 +17,10 @@ int esPunteroNulo(NumeroAstronomico* numero) {
     return numero == NULL;
 }
 
-/*TipoDeError getTipoDeError(NumeroAstronomico* numero) {
-    Preguntar esto
-}*/
+int getTipoDeError(NumeroAstronomico* numero) {
+
+    if (numero->longitudError >= 0)
+        return Ninguno;
+    else
+        return numero->longitudError;
+}
