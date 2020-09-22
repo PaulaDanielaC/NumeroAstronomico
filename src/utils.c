@@ -2,22 +2,14 @@
 #include "../header/aritm_op.h"
 #include "../header/creacion_op.h"
 #include "../header/errores.h"
-#include "../header/persist.h"
 #include "../header/salida_op.h"
 #include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
 
-#define CHAR_LIMIT 100
-
-typedef struct {
-    char string[ CHAR_LIMIT];
-    unsigned int longitud;
-} Texto;
+#define CHAR_LIMIT 103
 
 NumeroAstronomico *crearNumero();
-
-Texto *obtenerDigitosInput();
+void obtenerDigitosInput(char*);
 
 int opcion;
 
@@ -77,27 +69,29 @@ void limpiarResultado(NumeroAstronomico *num) {
 
 /* Funciones auxiliares */
 
-Texto *obtenerDigitosInput() {
-    printf("Numero: ");
-    fflush(stdin);
-    Texto *texto = malloc(sizeof(Texto));
-    unsigned int cantCaracteres = 0;
+void obtenerDigitosInput(char* cadena) {
+
+    printf("Numero:\n");
+    int cantCaracteres = 0;
     char input;
 
-    while ((input = getchar()) != '\n' && input != EOF && cantCaracteres <= CHAR_LIMIT) {
+    fflush(stdin);
+    while ((input = getchar()) != '\n' && input != EOF && cantCaracteres <= CHAR_LIMIT - 3) {
         if (isdigit(input)) {
-            texto->string[cantCaracteres] = input;
-            cantCaracteres++; // TODO Esto hace cualquier cosa
+            cadena[cantCaracteres] = input;
+            cantCaracteres++;
+        } else {
+            itoa(CadenaInvalida, cadena, 10);
         }
     }
 
-    texto->longitud = cantCaracteres;
-    return texto;
+    cadena[cantCaracteres] = '\n';
 }
 
 NumeroAstronomico *crearNumero() {
     NumeroAstronomico *num;
-    Texto *string;
+    char* string = malloc(CHAR_LIMIT);
+    int cifra, cantCeros;
 
     printf("1.Ingresar valor\n2.Ingresar cifra significativa y cantidad de ceros\n"
            "3.Crear numero aleatorio\n");
@@ -105,11 +99,15 @@ NumeroAstronomico *crearNumero() {
 
     switch (opcion) {
         case 1:
-            string = obtenerDigitosInput();
-            num = crearDesdeCadena(string->string, string->longitud);
+            obtenerDigitosInput(string);
+            num = crearDesdeCadena(string);
             break;
         case 2:
-            num = crearDesdeCifraSeguidaDeCeros();
+            printf("Ingrese la cifra\n");
+            scanf("%d", &cifra);
+            printf("Ingrese la cantidad de ceros\n");
+            scanf("%d", &cantCeros);
+            num = crearDesdeCifraSeguidaDeCeros(cifra, cantCeros);
             break;
         case 3:
             num = crearAleatorio();

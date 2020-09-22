@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "../header/errores.h"
 
+#define CHAR_LIMIT 103
 #define OVERFLOW 0
 #define CARRY 1
 
@@ -12,14 +13,16 @@ int obtenerNumMasDigitos(int, int);
 NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     NumeroAstronomico *result = malloc(sizeof(NumeroAstronomico));
     char *pEnd;
-    double op1 = strtod(num1->entero, &pEnd);
-    double op2 = strtod(num2->entero, &pEnd);
-    double resultado = op1 + op2;
-    perror("Exploto todo\n");
-    printf("El resultado double es: %.0f\n", resultado);
+    printf("El num1 es %s\n", num1->entero);
+    long long op1 = strtoll(num1->entero, &pEnd, 10);
+    long long op2 = strtoll(num2->entero, &pEnd, 10);
+    printf("El num1 es %lld\n", op1);
+    printf("El num2 es %lld\n", op2);
+    long long resultado = op1 + op2;
+    printf("El resultado double es: %lld\n", resultado);
 
-    result->entero = malloc(102);
-    sprintf(result->entero, "%.0f\n", resultado);
+    result->entero = malloc(CHAR_LIMIT);
+    sprintf(result->entero, "%lld\n", resultado);
     unsigned int longitudRes = strlen(result->entero);
 
     memcpy(&result->entero[2], result->entero, longitudRes + 2);

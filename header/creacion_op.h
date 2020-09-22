@@ -3,8 +3,8 @@
 
 #include <NumeroAstronomico.h>
 
-NumeroAstronomico* crearDesdeCadena(); 
-NumeroAstronomico* crearDesdeCifraSeguidaDeCeros();
+NumeroAstronomico* crearDesdeCadena(char*);
+NumeroAstronomico* crearDesdeCifraSeguidaDeCeros(unsigned int, unsigned int);
 NumeroAstronomico* crearAleatorio();
 
 #endif
