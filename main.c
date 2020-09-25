@@ -11,7 +11,7 @@ int main() {
            "4.Guardar resultados\n5.Cargar resultados\n6.Salir\n");
     scanf("%d", &opcion);
 
-    switch ((int) opcion) {
+    switch (opcion) {
         case 1:
             system("cls");
             result = realizarSuma();
