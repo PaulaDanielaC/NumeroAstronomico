@@ -22,7 +22,7 @@ NumeroAstronomico *realizarSuma() {
     num2 = crearNumero();
 
     printf("Ahora suma:\n");
-    NumeroAstronomico *result = sumar(num1, num2);
+    NumeroAstronomico *result = (num1, num2);
     mostrar(result, 3);
     system("pause");
     return result;
@@ -36,7 +36,7 @@ void verificarIgualdad() {
     printf("Segundo valor:\n");
     num2 = crearNumero();
 
-    sonIguales(num1,num2); //TODO: Armar mensaje
+    sonIguales(num1,num2);
 }
 
 void obtenerMenor() {
