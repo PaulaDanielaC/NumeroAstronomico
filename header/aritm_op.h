@@ -4,7 +4,7 @@
 #include "NumeroAstronomico.h"
 
 NumeroAstronomico* sumar(NumeroAstronomico*, NumeroAstronomico*);
-int sonIguales(NumeroAstronomico*, NumeroAstronomico*);
-int esMenor(NumeroAstronomico*, NumeroAstronomico*);
+void sonIguales(NumeroAstronomico*, NumeroAstronomico*);
+void esMenor(NumeroAstronomico*, NumeroAstronomico*);
 
 #endif

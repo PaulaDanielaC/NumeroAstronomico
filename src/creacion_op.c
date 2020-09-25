@@ -13,7 +13,7 @@ NumeroAstronomico* crearDesdeCadena(char* cadena) {
     NumeroAstronomico* numAstro = malloc(sizeof(NumeroAstronomico));
 
     numAstro->entero = cadena;
-    printf("Longitud %i\n", (int) strlen(cadena));
+    //printf("Longitud %i\n", (int) strlen(cadena)); //TODO: Porque hiciste eso Paux????
     numAstro->longitudError = (int) strlen(cadena);
     return numAstro;
 }

@@ -36,8 +36,7 @@ void verificarIgualdad() {
     printf("Segundo valor:\n");
     num2 = crearNumero();
 
-    int verificaIgualdad = sonIguales(num1, num2);
-    printf("%i\n", verificaIgualdad); //TODO: Armar mensaje
+    sonIguales(num1,num2); //TODO: Armar mensaje
 }
 
 void obtenerMenor() {
@@ -47,9 +46,8 @@ void obtenerMenor() {
     num1 = crearNumero();
     printf("Especificar otro numero:\n");
     num2 = crearNumero();
-    int menor = esMenor(num1, num2);
 
-    printf("Es menor %i\n", menor);
+    esMenor(num1,num2);
 }
 
 void guardarResultado(NumeroAstronomico *num) {
