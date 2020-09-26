@@ -52,27 +52,27 @@ int obtenerNumMasDigitos(int longNum1, int longNum2) {
     return longNum2;
 }
 
-void sonIguales(NumeroAstronomico *num1, NumeroAstronomico *num2) {
+int sonIguales(NumeroAstronomico *num1, NumeroAstronomico *num2) {
 
     if (getTipoDeError(num1) == Ninguno || getTipoDeError(num2) == Ninguno) {
         if(strcmp(num1->entero, num2->entero) == 0) {
             printf("Son iguales\n");
-        }
-        else {
-            printf("Son distintos\n");
+            return 1;
         }
 
+        printf("Son distintos\n");
+        return 0;
     }
 }
 
-void esMenor(NumeroAstronomico *num1, NumeroAstronomico *num2) {
+int esMenor(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     if (getTipoDeError(num1) == Ninguno || getTipoDeError(num2) == Ninguno) {
-        int resultado = strcmp(num1->entero, num2->entero);
-        if(resultado < 0) {
+        if(strcmp(num1->entero, num2->entero) < 0) {
             printf("Es menor %s", num1->entero);
+            return 1;
         }
-        else {
-            printf("Es menor %s", num2->entero);
-        }
+
+        printf("Es menor %s", num2->entero);
+        return 0;
     }
 }
