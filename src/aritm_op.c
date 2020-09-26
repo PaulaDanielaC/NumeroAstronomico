@@ -11,37 +11,48 @@
 int obtenerNumMasDigitos(int, int);
 
 NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
-    NumeroAstronomico *result = malloc(sizeof(NumeroAstronomico));
-    char *pEnd;
-    printf("El num1 es %s\n", num1->entero);
-    long long op1 = strtoll(num1->entero, &pEnd, 10);
-    long long op2 = strtoll(num2->entero, &pEnd, 10);
-    printf("El num1 es %lld\n", op1);
-    printf("El num2 es %lld\n", op2);
-    long long resultado = op1 + op2;
-    printf("El resultado double es: %lld\n", resultado);
+    NumeroAstronomico *resultado = malloc(sizeof(NumeroAstronomico));
+    resultado->entero = malloc(CHAR_LIMIT);
+    int digitoResult = 0;
+    int longitud = 0;
+    int carry = 0;
 
-    result->entero = malloc(CHAR_LIMIT);
-    sprintf(result->entero, "%lld\n", resultado);
-    unsigned int longitudRes = strlen(result->entero);
+    for (int i = 0; i < obtenerNumMasDigitos(num1->longitudError, num2->longitudError); i++) {
+        if (num1->entero[i] == '\n') {
+            char* cadenaRestante = malloc(CHAR_LIMIT - 2);
+            memcpy(cadenaRestante, num2->entero, CHAR_LIMIT-2-i);
+            break;
+        }
 
-    memcpy(&result->entero[2], result->entero, longitudRes + 2);
+        if(num2->entero[i] == '\n') {
+            char* cadenaRestante = malloc(CHAR_LIMIT);
+            memcpy(cadenaRestante, num1->entero, CHAR_LIMIT-2-i);
+            break;
+        }
 
-    if(longitudRes > 100) {
-        result->entero[OVERFLOW] = '1';
-    } else {
-        result->entero[OVERFLOW] = '0';
+        int d1 = ((int)num1->entero[i]) - ((int)'0');
+        int d2 = ((int)num2->entero[i]) - ((int)'0');
+        digitoResult = d1 + d2 + carry;
+
+        if (digitoResult > 9) {
+            digitoResult = digitoResult - 10;
+            carry = 1;
+        } else {
+            carry = 0;
+        }
+
+        itoa(digitoResult, &resultado->entero[i], 10);
+        longitud++;
     }
 
-    int mayorDigitos = obtenerNumMasDigitos(strlen(num1->entero), strlen(num2->entero)); // TODO Este carry funca como el ogt
-    if (longitudRes > mayorDigitos) {
-        result->entero[CARRY] = '1';
-    } else {
-        result->entero[CARRY] = '0';
-    }
+//    memcpy(&result->entero[2], result->entero, longitudRes + 2);
+//    if (longitud > 101) {
+//
+//    }
 
-    result->longitudError = (int) longitudRes;
-    return result;
+
+    printf("resultado: %s\n", resultado->entero);
+    return resultado;
 }
 
 int obtenerNumMasDigitos(int longNum1, int longNum2) {

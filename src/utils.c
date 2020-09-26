@@ -22,7 +22,7 @@ NumeroAstronomico *realizarSuma() {
     num2 = crearNumero();
 
     printf("Ahora suma:\n");
-    NumeroAstronomico *result = (num1, num2);
+    NumeroAstronomico *result = sumar(num1, num2);
     mostrar(result, 3);
     system("pause");
     return result;
