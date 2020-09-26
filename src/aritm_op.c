@@ -14,24 +14,15 @@ NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     NumeroAstronomico *resultado = malloc(sizeof(NumeroAstronomico));
     resultado->entero = malloc(CHAR_LIMIT);
     int digitoResult = 0;
-    int longitud = 0;
+    int long1 = num1->longitudError-1;
+    int long2 = num2->longitudError-1;
+    int numMasLargo = obtenerNumMasDigitos(long1, long2)-1;
     int carry = 0;
 
-    for (int i = 0; i < obtenerNumMasDigitos(num1->longitudError, num2->longitudError); i++) {
-        if (num1->entero[i] == '\n') {
-            char* cadenaRestante = malloc(CHAR_LIMIT - 2);
-            memcpy(cadenaRestante, num2->entero, CHAR_LIMIT-2-i);
-            break;
-        }
+    while(long1 != 0 || long2 != 0) {
 
-        if(num2->entero[i] == '\n') {
-            char* cadenaRestante = malloc(CHAR_LIMIT);
-            memcpy(cadenaRestante, num1->entero, CHAR_LIMIT-2-i);
-            break;
-        }
-
-        int d1 = ((int)num1->entero[i]) - ((int)'0');
-        int d2 = ((int)num2->entero[i]) - ((int)'0');
+        int d1 = ((int)num1->entero[long1-1]) - ((int)'0');
+        int d2 = ((int)num2->entero[long2-1]) - ((int)'0');
         digitoResult = d1 + d2 + carry;
 
         if (digitoResult > 9) {
@@ -41,16 +32,14 @@ NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
             carry = 0;
         }
 
-        itoa(digitoResult, &resultado->entero[i], 10);
-        longitud++;
+        itoa(digitoResult, &resultado->entero[numMasLargo], 10);
+        printf("result %d\n", digitoResult);
+        long1--;
+        long2--;
+        numMasLargo--;
     }
 
-//    memcpy(&result->entero[2], result->entero, longitudRes + 2);
-//    if (longitud > 101) {
-//
-//    }
-
-
+    resultado->entero[numMasLargo] = '\n';
     printf("resultado: %s\n", resultado->entero);
     return resultado;
 }
