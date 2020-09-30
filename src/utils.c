@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define CHAR_LIMIT 103
+#define CHAR_LIMIT 100
 
 NumeroAstronomico *crearNumero();
 void obtenerDigitosInput(char*);
@@ -74,7 +74,7 @@ void obtenerDigitosInput(char* cadena) {
     char input;
 
     fflush(stdin);
-    while ((input = getchar()) != '\n' && input != EOF && cantCaracteres <= CHAR_LIMIT - 3) {
+    while ((input = getchar()) != '\n' && input != EOF && cantCaracteres <= CHAR_LIMIT) {
         if (isdigit(input)) {
             cadena[cantCaracteres] = input;
             cantCaracteres++;
@@ -83,7 +83,7 @@ void obtenerDigitosInput(char* cadena) {
         }
     }
 
-    cadena[cantCaracteres] = '\n';
+    cadena[cantCaracteres] = '\0';
 }
 
 NumeroAstronomico *crearNumero() {
