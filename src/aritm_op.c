@@ -12,17 +12,17 @@ int obtenerNumMasDigitos(int, int);
 
 NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     NumeroAstronomico *resultado = malloc(sizeof(NumeroAstronomico));
-    resultado->entero = malloc(CHAR_LIMIT);
-    int digitoResult = 0;
+    int numMasLargo = obtenerNumMasDigitos(num1->longitudError, num2->longitudError);
+    resultado->entero = malloc(numMasLargo);
+    int index = numMasLargo-1;
     int long1 = num1->longitudError-1;
     int long2 = num2->longitudError-1;
-    int numMasLargo = obtenerNumMasDigitos(long1, long2)-1;
     int carry = 0;
+    int digitoResult;
 
-    while(long1 != 0 || long2 != 0) {
-
-        int d1 = ((int)num1->entero[long1-1]) - ((int)'0');
-        int d2 = ((int)num2->entero[long2-1]) - ((int)'0');
+    while(long1 != -1 && long2 != -1) {
+        int d1 = ((int)num1->entero[long1]) - ((int)'0');
+        int d2 = ((int)num2->entero[long2]) - ((int)'0');
         digitoResult = d1 + d2 + carry;
 
         if (digitoResult > 9) {
@@ -32,14 +32,16 @@ NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
             carry = 0;
         }
 
-        itoa(digitoResult, &resultado->entero[numMasLargo], 10);
-        printf("result %d\n", digitoResult);
+        resultado->entero[index] = (char)(digitoResult + '0');
         long1--;
         long2--;
-        numMasLargo--;
+        index--;
     }
 
-    resultado->entero[numMasLargo] = '\n';
+//   TODO: Terminar de completar el numero si hay diferencia de digitos
+//   TODO: Manejo del caso overflow
+
+    resultado->entero[numMasLargo] = '\0';
     printf("resultado: %s\n", resultado->entero);
     return resultado;
 }
