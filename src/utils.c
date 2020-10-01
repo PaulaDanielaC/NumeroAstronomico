@@ -69,7 +69,7 @@ void limpiarResultado(NumeroAstronomico *num) {
 
 void obtenerDigitosInput(char* cadena) {
 
-    printf("Numero:\n");
+    printf("Numero:");
     int cantCaracteres = 0;
     char input;
 
@@ -93,6 +93,7 @@ NumeroAstronomico *crearNumero() {
 
     printf("1.Ingresar valor\n2.Ingresar cifra significativa y cantidad de ceros\n"
            "3.Crear numero aleatorio\n");
+    printf("Opcion: ");
     scanf("%d", &opcion);
 
     switch (opcion) {
