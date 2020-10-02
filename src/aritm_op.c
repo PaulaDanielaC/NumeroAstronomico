@@ -19,6 +19,7 @@ NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     int long2 = num2->longitudError-1;
     int carry = 0;
     int digitoResultado;
+    int overflow = 0;
 
     while(long1 != -1 && long2 != -1) {
         int d1 = ((int)num1->entero[long1]) - ((int)'0');
@@ -39,23 +40,30 @@ NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     }
 
 //   TODO: Terminar de completar el numero si hay diferencia de digitos
-//   TODO: Manejo del caso overflow
+//   TODO: Manejo del caso overflow  ----> No me acuerdo si iría 103 (ya con el carry y el overflow incluidos) o 101
 
+/*
     int i = 0;
 
     int tamanio = sizeof(resultado->entero[numMasLargo]) / sizeof(NumeroAstronomico);
 
+    printf("Tamanio = %d", tamanio);
     while(i < tamanio) {
         resultado->entero[i];
         i++;
     }
+    printf("Contador = %d\n", i);
 
-    if (i >= 101)
+    if (i >= 101){
         printf("Hay overflow\n");
+        overflow = 1;
+    }
 
-    else
+    else{
         printf("No hay overflow\n");
-
+        overflow = 0;
+    }
+*/
     resultado->entero[numMasLargo] = '\0';
     printf("resultado: %s\n", resultado->entero);
     return resultado;
