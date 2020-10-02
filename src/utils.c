@@ -102,9 +102,9 @@ NumeroAstronomico *crearNumero() {
             num = crearDesdeCadena(string);
             break;
         case 2:
-            printf("Ingrese la cifra\n");
+            printf("Ingrese la cifra: ");
             scanf("%d", &cifra);
-            printf("Ingrese la cantidad de ceros\n");
+            printf("Ingrese la cantidad de ceros: ");
             scanf("%d", &cantCeros);
             num = crearDesdeCifraSeguidaDeCeros(cifra, cantCeros);
             break;

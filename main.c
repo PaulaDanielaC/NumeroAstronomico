@@ -1,6 +1,5 @@
 #include "header/utils.h"
 #include <stdlib.h>
-#include <conio.h>
 
 int main() {
     int opcion;

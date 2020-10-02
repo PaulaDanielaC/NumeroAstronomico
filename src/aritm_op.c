@@ -82,22 +82,28 @@ int sonIguales(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     if (getTipoDeError(num1) == Ninguno || getTipoDeError(num2) == Ninguno) { // TODO: Mepa que aca iria un and porque si uno da True, ya tendría error
         if(strcmp(num1->entero, num2->entero) == 0) {
             printf("Son iguales\n");
+            system("pause"); // Para que no se cierre
             return 1;
         }
-
-        printf("Son distintos\n");
-        return 0;
+        else{
+            printf("Son distintos\n");
+            system("pause");
+            return 0;
+        }
     }
 }
 
 int esMenor(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     if (getTipoDeError(num1) == Ninguno || getTipoDeError(num2) == Ninguno) { // TODO: Idem de sonIguales
-        if(strcmp(num1->entero, num2->entero) < 0) {
-            printf("Es menor %s", num1->entero);
+        if (strcmp(num1->entero, num2->entero) < 0) {
+            printf("Es menor %s\n\n\n", num1->entero); // TODO: Implementar primero el numero y despues el texto.
+            system("pause");
             return 1;
         }
-
-        printf("Es menor %s", num2->entero);
-        return 0;
+        else{
+            printf("Es menor %s\n", num2->entero);
+            system("pause");
+            return 0;
+        }
     }
 }
