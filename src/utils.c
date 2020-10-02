@@ -16,9 +16,9 @@ int opcion;
 NumeroAstronomico *realizarSuma() {
     NumeroAstronomico *num1, *num2;
 
-    printf("Primer valor:\n");
+    printf("\nPrimer valor\n");
     num1 = crearNumero();
-    printf("Segundo valor:\n");
+    printf("\nSegundo valor\n");
     num2 = crearNumero();
 
     printf("Ahora suma:\n");
@@ -44,7 +44,7 @@ void obtenerMenor() {
 
     printf("Primer valor:\n");
     num1 = crearNumero();
-    printf("Especificar otro numero:\n");
+    printf("Segundo valor:\n");
     num2 = crearNumero();
 
     esMenor(num1,num2);

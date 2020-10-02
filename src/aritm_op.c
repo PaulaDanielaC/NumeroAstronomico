@@ -18,21 +18,21 @@ NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     int long1 = num1->longitudError-1;
     int long2 = num2->longitudError-1;
     int carry = 0;
-    int digitoResult;
+    int digitoResultado;
 
     while(long1 != -1 && long2 != -1) {
         int d1 = ((int)num1->entero[long1]) - ((int)'0');
         int d2 = ((int)num2->entero[long2]) - ((int)'0');
-        digitoResult = d1 + d2 + carry;
+        digitoResultado = d1 + d2 + carry;
 
-        if (digitoResult > 9) {
-            digitoResult = digitoResult - 10;
+        if (digitoResultado > 9) {
+            digitoResultado = digitoResultado - 10;
             carry = 1;
         } else {
             carry = 0;
         }
 
-        resultado->entero[index] = (char)(digitoResult + '0');
+        resultado->entero[index] = (char)(digitoResultado + '0');
         long1--;
         long2--;
         index--;
@@ -40,6 +40,21 @@ NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
 
 //   TODO: Terminar de completar el numero si hay diferencia de digitos
 //   TODO: Manejo del caso overflow
+
+    int i = 0;
+
+    int tamanio = sizeof(resultado->entero[numMasLargo]) / sizeof(NumeroAstronomico);
+
+    while(i < tamanio) {
+        resultado->entero[i];
+        i++;
+    }
+
+    if (i >= 101)
+        printf("Hay overflow\n");
+
+    else
+        printf("No hay overflow\n");
 
     resultado->entero[numMasLargo] = '\0';
     printf("resultado: %s\n", resultado->entero);
@@ -56,7 +71,7 @@ int obtenerNumMasDigitos(int longNum1, int longNum2) {
 
 int sonIguales(NumeroAstronomico *num1, NumeroAstronomico *num2) {
 
-    if (getTipoDeError(num1) == Ninguno || getTipoDeError(num2) == Ninguno) {
+    if (getTipoDeError(num1) == Ninguno || getTipoDeError(num2) == Ninguno) { // TODO: Mepa que aca iria un and porque si uno da True, ya tendría error
         if(strcmp(num1->entero, num2->entero) == 0) {
             printf("Son iguales\n");
             return 1;
@@ -68,7 +83,7 @@ int sonIguales(NumeroAstronomico *num1, NumeroAstronomico *num2) {
 }
 
 int esMenor(NumeroAstronomico *num1, NumeroAstronomico *num2) {
-    if (getTipoDeError(num1) == Ninguno || getTipoDeError(num2) == Ninguno) {
+    if (getTipoDeError(num1) == Ninguno || getTipoDeError(num2) == Ninguno) { // TODO: Idem de sonIguales
         if(strcmp(num1->entero, num2->entero) < 0) {
             printf("Es menor %s", num1->entero);
             return 1;
