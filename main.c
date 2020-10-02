@@ -1,51 +1,56 @@
 #include "header/utils.h"
 #include <stdlib.h>
 
+int menu(int);
+
 int main() {
     int opcion;
-    NumeroAstronomico *result;
+    int esOpcionInvalida = 1;
 
-    printf("\n                         CALCULADORA DE NUMEROS ASTRONOMICOS DE IGNACIO GARCIA Y PAULA CHITTARO\n\n"
+    printf("\n\t\t\tCALCULADORA DE NUMEROS ASTRONOMICOS DE IGNACIO GARCIA Y PAULA CHITTARO\n\n"
            "Seleccione la operacion que quiera realizar:\n");
     printf("1.Sumar valores\n2.Verificar igualdad de dos numeros\n3.Verificar menor valor\n"
-           "4.Guardar resultados\n5.Cargar resultados\n6.Salir\n");
-    printf("Opcion:");
-    scanf("%d", &opcion);
+           "4.Guardar resultados\n5.Cargar resultados\n6.Salir\n\n");
 
-        switch (opcion) {
-            case 1:
-                system("cls");
-                result = realizarSuma();
-                limpiarResultado(result);
-                break;
-            case 2:
-                system("cls");
-                verificarIgualdad();
-                break;
-            case 3:
-                system("cls");
-                obtenerMenor(result);
-                break;
-            case 4:
-                system("cls");
-                guardarResultado(result);
-                break;
-            case 5:
-                system("cls");
-                result = cargarResultado();
-                limpiarResultado(result);
-                break;
-            case 6:
-                exit(0);
+    while (esOpcionInvalida == 1) {
+        printf("Opcion:");
+        scanf("%d", &opcion);
+        esOpcionInvalida = menu(opcion);
+    }
 
-            default:
-                printf("Opcion Invalida");
-                break;
-        }
+    return 0;
+}
 
-        //TODO: Ver si se puede modificar algo del menu. Porque no me gusta
-        // Que cuando nos diga opción invalida se termine la ejecucion
+int menu(int opcion) {
+    NumeroAstronomico *result = NULL;
 
-        return 0;
-
+    switch (opcion) {
+        case 1:
+            system("cls");
+            result = realizarSuma();
+            limpiarResultado(result);
+            return 0;
+        case 2:
+            system("cls");
+            verificarIgualdad();
+            return 0;
+        case 3:
+            system("cls");
+            obtenerMenor(result);
+            return 0;
+        case 4:
+            system("cls");
+            guardarResultado(result);
+            return 0;
+        case 5:
+            system("cls");
+            result = cargarResultado();
+            limpiarResultado(result);
+            return 0;
+        case 6:
+            exit(0);
+        default:
+            printf("Opcion Invalida, ingrese nuevamente\n");
+            return 1;
+    }
 }
