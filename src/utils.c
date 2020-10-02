@@ -16,12 +16,12 @@ int opcion;
 NumeroAstronomico *realizarSuma() {
     NumeroAstronomico *num1, *num2;
 
-    printf("\nPrimer valor\n");
+    printf("Primer valor\n");
     num1 = crearNumero();
     printf("\nSegundo valor\n");
     num2 = crearNumero();
 
-    printf("Ahora suma:\n");
+    printf("\nAhora suma:\n");
     NumeroAstronomico *result = sumar(num1, num2);
     mostrar(result, 3);
     system("pause");
@@ -33,7 +33,7 @@ void verificarIgualdad() {
 
     printf("Primer valor:\n");
     num1 = crearNumero();
-    printf("Segundo valor:\n");
+    printf("\nSegundo valor:\n");
     num2 = crearNumero();
 
     sonIguales(num1,num2);
@@ -44,7 +44,7 @@ void obtenerMenor() {
 
     printf("Primer valor:\n");
     num1 = crearNumero();
-    printf("Segundo valor:\n");
+    printf("\nSegundo valor:\n");
     num2 = crearNumero();
 
     esMenor(num1,num2);
@@ -93,7 +93,7 @@ NumeroAstronomico *crearNumero() {
 
     printf("1.Ingresar valor\n2.Ingresar cifra significativa y cantidad de ceros\n"
            "3.Crear numero aleatorio\n");
-    printf("Opcion: ");
+    printf("Opcion:");
     scanf("%d", &opcion);
 
     switch (opcion) {

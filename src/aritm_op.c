@@ -42,28 +42,7 @@ NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
 //   TODO: Terminar de completar el numero si hay diferencia de digitos
 //   TODO: Manejo del caso overflow  ----> No me acuerdo si iría 103 (ya con el carry y el overflow incluidos) o 101
 
-/*
-    int i = 0;
 
-    int tamanio = sizeof(resultado->entero[numMasLargo]) / sizeof(NumeroAstronomico);
-
-    printf("Tamanio = %d", tamanio);
-    while(i < tamanio) {
-        resultado->entero[i];
-        i++;
-    }
-    printf("Contador = %d\n", i);
-
-    if (i >= 101){
-        printf("Hay overflow\n");
-        overflow = 1;
-    }
-
-    else{
-        printf("No hay overflow\n");
-        overflow = 0;
-    }
-*/
     resultado->entero[numMasLargo] = '\0';
     printf("resultado: %s\n", resultado->entero);
     return resultado;
@@ -81,12 +60,12 @@ int sonIguales(NumeroAstronomico *num1, NumeroAstronomico *num2) {
 
     if (getTipoDeError(num1) == Ninguno || getTipoDeError(num2) == Ninguno) { // TODO: Mepa que aca iria un and porque si uno da True, ya tendría error
         if(strcmp(num1->entero, num2->entero) == 0) {
-            printf("Son iguales\n");
+            printf("\nSon iguales\n");
             system("pause"); // Para que no se cierre
             return 1;
         }
         else{
-            printf("Son distintos\n");
+            printf("\nSon distintos\n");
             system("pause");
             return 0;
         }

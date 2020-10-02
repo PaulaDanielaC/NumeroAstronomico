@@ -37,7 +37,7 @@ NumeroAstronomico* crearDesdeCifraSeguidaDeCeros(unsigned int cifra, unsigned in
 NumeroAstronomico* crearAleatorio() {
     NumeroAstronomico* numAstro = malloc(sizeof(NumeroAstronomico));
     int cifra = obtenerNumeroRandom();
-    printf("Numero que genere %i", cifra);
+    printf("Numero que genere: %i\n", cifra);
     numAstro->entero = malloc(cifra);
     sprintf(numAstro->entero, "%d", cifra);
     numAstro->longitudError = strlen(numAstro->entero);
@@ -46,7 +46,7 @@ NumeroAstronomico* crearAleatorio() {
 
 /* Operacion auxiliares */
 
-static int obtenerNumeroRandom() {
+static int obtenerNumeroRandom() {  //TODO: Ver esto!
     time_t sysTime;
     srand((unsigned) time(&sysTime));
     return rand();
