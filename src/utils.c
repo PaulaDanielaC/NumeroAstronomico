@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define CHAR_LIMIT 100
+#define TOTAL_LIMIT 100
 
 NumeroAstronomico *crearNumero();
 void obtenerDigitosInput(char*);
@@ -37,6 +37,7 @@ void verificarIgualdad() {
     num2 = crearNumero();
 
     sonIguales(num1,num2);
+    system("pause");
 }
 
 void obtenerMenor() {
@@ -48,6 +49,7 @@ void obtenerMenor() {
     num2 = crearNumero();
 
     esMenor(num1,num2);
+    system("pause");
 }
 
 void guardarResultado(NumeroAstronomico *num) {
@@ -74,7 +76,7 @@ void obtenerDigitosInput(char* cadena) {
     char input;
 
     fflush(stdin);
-    while ((input = getchar()) != '\n' && input != EOF && cantCaracteres <= CHAR_LIMIT) {
+    while ((input = getchar()) != '\n' && input != EOF && cantCaracteres <= TOTAL_LIMIT) {
         if (isdigit(input)) {
             cadena[cantCaracteres] = input;
             cantCaracteres++;
@@ -83,12 +85,12 @@ void obtenerDigitosInput(char* cadena) {
         }
     }
 
-    cadena[cantCaracteres] = '\0';
+    cadena[cantCaracteres+1] = '\0';
 }
 
 NumeroAstronomico *crearNumero() {
     NumeroAstronomico *num;
-    char* string = malloc(CHAR_LIMIT);
+    char* string = malloc(TOTAL_LIMIT);
     int cifra, cantCeros;
 
     printf("1.Ingresar valor\n2.Ingresar cifra significativa y cantidad de ceros\n"
