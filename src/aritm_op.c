@@ -5,10 +5,9 @@
 #include "../header/errores.h"
 
 #define CHAR_LIMIT 103
-#define OVERFLOW 0
-#define CARRY 1
 
 int obtenerNumMasDigitos(int, int);
+int checkCarry(int*);
 
 NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     NumeroAstronomico *resultado = malloc(sizeof(NumeroAstronomico));
@@ -19,30 +18,54 @@ NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     int long2 = num2->longitudError - 1;
     int carry = 0;
     int digitoResultado;
-    int overflow = 0;
-    int i = 0;
 
     while (long1 != -1 && long2 != -1) {
         int d1 = ((int) num1->entero[long1]) - ((int) '0');
         int d2 = ((int) num2->entero[long2]) - ((int) '0');
+
         digitoResultado = d1 + d2 + carry;
-
-        if (digitoResultado > 9) {
-            digitoResultado = digitoResultado - 10;
-            carry = 1;
-        } else {
-            carry = 0;
-        }
-
+        carry = checkCarry(&digitoResultado);
         resultado->entero[index] = (char) (digitoResultado + '0');
         long1--;
         long2--;
         index--;
     }
 
-//   TODO: Terminar de completar el numero si hay diferencia de digitos
+    while (long1 != -1) {
+        int d1 = ((int) num1->entero[long1]) - ((int) '0');
+
+        digitoResultado = d1 + carry;
+        carry = checkCarry(&digitoResultado);
+        resultado->entero[index] = (char) (digitoResultado + '0');
+        long1--;
+        index--;
+    }
+
+    while (long2 != -1) {
+        int d2 = ((int) num2->entero[long2]) - ((int) '0');
+
+        digitoResultado = d2 + carry;
+        carry = checkCarry(&digitoResultado);
+        resultado->entero[index] = (char) (digitoResultado + '0');
+        long2--;
+        index--;
+    }
+
 //   TODO: Manejo del caso overflow
 
+    return resultado;
+}
+
+int checkCarry(int* resultado) {
+    int carryDigit;
+    if (*resultado > 9) {
+        *resultado = *resultado - 10;
+        carryDigit = 1;
+    } else {
+        carryDigit = 0;
+    }
+
+    return carryDigit;
 }
 
 int obtenerNumMasDigitos(int longNum1, int longNum2) {

@@ -69,7 +69,7 @@ void limpiarResultado(NumeroAstronomico *num) {
 
 void obtenerDigitosInput(char* cadena) {
 
-    printf("Numero:");
+    printf("Numero:\n");
     int cantCaracteres = 0;
     char input;
 
