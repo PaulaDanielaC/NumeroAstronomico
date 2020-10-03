@@ -3,13 +3,15 @@
 #include "../header/creacion_op.h"
 #include "../header/errores.h"
 #include "../header/salida_op.h"
+#include "../header/persist.h"
 #include <stdlib.h>
 #include <ctype.h>
 
 #define TOTAL_LIMIT 100
 
 NumeroAstronomico *crearNumero();
-void obtenerDigitosInput(char*);
+
+void obtenerDigitosInput(char *);
 
 int opcion;
 
@@ -36,7 +38,7 @@ void verificarIgualdad() {
     printf("\nSegundo valor:\n");
     num2 = crearNumero();
 
-    sonIguales(num1,num2);
+    sonIguales(num1, num2);
     system("pause");
 }
 
@@ -48,11 +50,33 @@ void obtenerMenor() {
     printf("\nSegundo valor:\n");
     num2 = crearNumero();
 
-    esMenor(num1,num2);
+    esMenor(num1, num2);
     system("pause");
 }
 
 void guardarResultado(NumeroAstronomico *num) {
+    int opcion;
+    FILE* archivo;
+
+    printf("Elija un formato de archivo\n");
+    printf("1- Texto\n");
+    printf("2- Binario\n");
+    scanf("%d", &opcion);
+
+    switch (opcion) {
+        case 1:
+            archivo = fopen("tuvieja.txt", "w");
+            write(num, archivo);
+            break;
+        case 2:
+            archivo = fopen("tuvieja.txt", "wb");
+            write(num, archivo);
+            break;
+        default:
+            printf("Pusiste cualquier cosa sorete\n");
+            break;
+    }
+
     // TODO: Implementar
 }
 
@@ -69,7 +93,7 @@ void limpiarResultado(NumeroAstronomico *num) {
 
 /* Funciones auxiliares */
 
-void obtenerDigitosInput(char* cadena) {
+void obtenerDigitosInput(char *cadena) {
 
     printf("Numero:\n");
     int cantCaracteres = 0;
@@ -85,12 +109,12 @@ void obtenerDigitosInput(char* cadena) {
         }
     }
 
-    cadena[cantCaracteres+1] = '\0';
+    cadena[cantCaracteres] = '\0';
 }
 
 NumeroAstronomico *crearNumero() {
     NumeroAstronomico *num;
-    char* string = malloc(TOTAL_LIMIT);
+    char *string = malloc(TOTAL_LIMIT);
     int cifra, cantCeros;
 
     printf("1.Ingresar valor\n2.Ingresar cifra significativa y cantidad de ceros\n"

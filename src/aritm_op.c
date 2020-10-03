@@ -13,7 +13,7 @@ int checkCarry(int *);
 NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     NumeroAstronomico *resultado = malloc(sizeof(NumeroAstronomico));
     int numMasLargo = obtenerNumMasDigitos(num1->longitudError, num2->longitudError);
-    resultado->entero = malloc(numMasLargo);
+    resultado->entero = malloc(numMasLargo + 1);
     int long1 = num1->longitudError - 1;
     int long2 = num2->longitudError - 1;
     int index = numMasLargo - 1;
@@ -104,11 +104,13 @@ void checkOverflow(NumeroAstronomico *numero, int carry, int longitud) {
         if ((longitud + carry) > NUM_LIMIT) {
             numero->longitudError = Overflow;
         } else {
-            memcpy(&numero->entero[1], numero->entero, longitud + 1);
+            memcpy(&numero->entero[1], numero->entero, longitud + 2);
             numero->entero[0] = (char) (carry + '0');
             numero->longitudError = longitud + 1;
         }
     }
+
+    numero->entero[longitud+2] = '\0';
 }
 
 int obtenerNumMasDigitos(int longNum1, int longNum2) {
