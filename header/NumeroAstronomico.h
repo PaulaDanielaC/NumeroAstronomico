@@ -6,8 +6,6 @@ typedef struct {
   int longitudError;
 } NumeroAstronomico;
 
-
-
 #endif
 
 

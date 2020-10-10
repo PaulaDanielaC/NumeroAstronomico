@@ -4,11 +4,11 @@
 #include "NumeroAstronomico.h"
 #include <stdio.h>
 
-NumeroAstronomico* realizarSuma();
+NumeroAstronomico* realizarSuma(NumeroAstronomico* resultado);
 void verificarIgualdad();
 void obtenerMenor();
 void guardarResultado(NumeroAstronomico*);
-NumeroAstronomico* cargarResultado();
+void cargarResultado();
 void limpiarResultado(NumeroAstronomico*);
 
 #endif

@@ -6,11 +6,11 @@
 
 #define NUM_LIMIT 100
 
-void checkOverflow(NumeroAstronomico *, int, int);
+void checkOverflow(NumeroAstronomico*, int, int);
 int obtenerNumMasDigitos(int, int);
-int checkCarry(int *);
+int checkCarry(int*);
 
-NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
+NumeroAstronomico* sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     NumeroAstronomico *resultado = malloc(sizeof(NumeroAstronomico));
     int numMasLargo = obtenerNumMasDigitos(num1->longitudError, num2->longitudError);
     resultado->entero = malloc(numMasLargo + 1);

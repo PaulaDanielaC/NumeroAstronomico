@@ -10,12 +10,11 @@
 #define TOTAL_LIMIT 100
 
 NumeroAstronomico *crearNumero();
-
 void obtenerDigitosInput(char *);
 
 int opcion;
 
-NumeroAstronomico *realizarSuma() {
+NumeroAstronomico* realizarSuma(NumeroAstronomico* result) {
     NumeroAstronomico *num1, *num2;
 
     printf("Primer valor\n");
@@ -24,7 +23,7 @@ NumeroAstronomico *realizarSuma() {
     num2 = crearNumero();
 
     printf("\nAhora suma:\n");
-    NumeroAstronomico *result = sumar(num1, num2);
+    result = sumar(num1, num2);
     mostrar(result, 3);
     system("pause");
     return result;
@@ -58,6 +57,11 @@ void guardarResultado(NumeroAstronomico *num) {
     int opcion;
     FILE* archivo;
 
+//  TODO: Sacar hardcodeo
+    num = malloc(sizeof(NumeroAstronomico));
+    num->entero = "34343";
+    num->longitudError = 5;
+
     printf("Elija un formato de archivo\n");
     printf("1- Texto\n");
     printf("2- Binario\n");
@@ -65,25 +69,41 @@ void guardarResultado(NumeroAstronomico *num) {
 
     switch (opcion) {
         case 1:
-            archivo = fopen("tuvieja.txt", "w");
-            write(num, archivo);
+            archivo = fopen(ARCHIVO_TEXTO, "w+");
+            print(num, archivo);
+            fclose(archivo);
             break;
         case 2:
-            archivo = fopen("tuvieja.txt", "wb");
+            archivo = fopen(ARCHIVO_BINARIO, "wb+");
             write(num, archivo);
+            fclose(archivo);
             break;
         default:
-            printf("Pusiste cualquier cosa sorete\n");
+            printf("Opcion invalida\n");
             break;
     }
-
-    // TODO: Implementar
 }
 
-NumeroAstronomico *cargarResultado() {
-    // TODO: Implementar
+void cargarResultado(FILE* stream) {
     NumeroAstronomico *num;
-    return num;
+
+    printf("Elija un formato de archivo\n");
+    printf("1- Texto\n");
+    printf("2- Binario\n");
+    scanf("%d", &opcion);
+
+    switch (opcion) {
+        case 1:
+            num = scan(stream);
+            break;
+        case 2:
+            num = read(stream);
+            break;
+        default:
+            printf("Opcion invalida\n");
+            break;
+    }
+//    return num;
 }
 
 void limpiarResultado(NumeroAstronomico *num) {
