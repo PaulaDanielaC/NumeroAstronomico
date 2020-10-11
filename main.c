@@ -22,6 +22,7 @@ int main() {
     return 0;
 }
 
+//Borrar comment
 int menu(int opcion, NumeroAstronomico* result) {
     switch (opcion) {
         case 1:
