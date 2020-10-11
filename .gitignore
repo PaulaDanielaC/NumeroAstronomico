@@ -1,10 +1,10 @@
 #ignore visual code related files
+.idea
 .vscode
 /.vscode
 #ignore executables
 *.exe
 #ignore clion related files
-CMakeLists.txt
 cmake-build-debug
 /cmake-build-debug
 .idea
