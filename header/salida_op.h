@@ -3,6 +3,6 @@
 
 #include "NumeroAstronomico.h"
 
-void mostrar(NumeroAstronomico*, unsigned int);
+FILE* mostrar(NumeroAstronomico*, unsigned int, FILE *);
 
 #endif

@@ -1,5 +1,6 @@
 #include "header/utils.h"
 #include <stdlib.h>
+#include "salida_op.h"
 
 int menu(int, NumeroAstronomico*);
 
@@ -11,13 +12,18 @@ int main() {
     printf("\n\t\t\tCALCULADORA DE NUMEROS ASTRONOMICOS DE IGNACIO GARCIA Y PAULA CHITTARO\n\n"
            "Seleccione la operacion que quiera realizar:\n");
 
-    while (finaliza == 0) {
-        printf("1.Sumar valores\n2.Verificar igualdad de dos numeros\n3.Verificar menor valor\n"
-               "4.Guardar resultados\n5.Cargar resultados\n6.Salir\n\n");
-        printf("Opcion:");
-        scanf("%d", &opcion);
-        finaliza = menu(opcion, result);
-    }
+    NumeroAstronomico numerito;
+    numerito.entero = "11111111111111111111\n";
+    numerito.longitudError = 21;
+    mostrar(&numerito, 3, stdout);
+    system("pause");
+//    while (finaliza == 0) {
+//        printf("1.Sumar valores\n2.Verificar igualdad de dos numeros\n3.Verificar menor valor\n"
+//               "4.Guardar resultados\n5.Cargar resultados\n6.Salir\n\n");
+//        printf("Opcion:");
+//        scanf("%d", &opcion);
+//        finaliza = menu(opcion, result);
+//    }
 
     return 0;
 }

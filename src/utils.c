@@ -24,7 +24,7 @@ NumeroAstronomico* realizarSuma(NumeroAstronomico* result) {
 
     printf("\nAhora suma:\n");
     result = sumar(num1, num2);
-    mostrar(result, 3);
+    mostrar(result, 3, stdout);
     system("pause");
     return result;
 }

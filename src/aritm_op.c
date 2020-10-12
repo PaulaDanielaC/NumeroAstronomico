@@ -104,6 +104,7 @@ void checkOverflow(NumeroAstronomico *numero, int carry, int longitud) {
         if ((longitud + carry) > NUM_LIMIT) {
             numero->longitudError = Overflow;
         } else {
+//          TODO: Aca puede estar el error de la basura
             memcpy(&numero->entero[1], numero->entero, longitud + 2);
             numero->entero[0] = (char) (carry + '0');
             numero->longitudError = longitud + 1;
