@@ -1,5 +1,5 @@
 #include <NumeroAstronomico.h>
-#include <stdio.h>e
+#include <stdio.h>
 #include <malloc.h>
 
 char* darVuelta(char*, int);

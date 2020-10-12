@@ -14,7 +14,7 @@ void obtenerDigitosInput(char *);
 
 int opcion;
 
-NumeroAstronomico* realizarSuma(NumeroAstronomico* result) {
+NumeroAstronomico* realizarSuma() {
     NumeroAstronomico *num1, *num2;
 
     printf("Primer valor\n");
@@ -23,8 +23,8 @@ NumeroAstronomico* realizarSuma(NumeroAstronomico* result) {
     num2 = crearNumero();
 
     printf("\nAhora suma:\n");
-    result = sumar(num1, num2);
-    mostrar(result, 3, stdout);
+    NumeroAstronomico* result = sumar(num1, num2);
+    //mostrar(result, 3, stdout); TODO: Falta terminar la funcion mostrar
     system("pause");
     return result;
 }

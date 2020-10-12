@@ -4,7 +4,7 @@
 #include "NumeroAstronomico.h"
 #include <stdio.h>
 
-NumeroAstronomico* realizarSuma(NumeroAstronomico* resultado);
+NumeroAstronomico* realizarSuma();
 void verificarIgualdad();
 void obtenerMenor();
 void guardarResultado(NumeroAstronomico*);
