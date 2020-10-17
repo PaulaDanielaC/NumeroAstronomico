@@ -5,38 +5,31 @@
 char* darVuelta(char*, int);
 
 void mostrar(NumeroAstronomico* num, unsigned int cantGrupos, FILE* stream) {
-    int i = 0;
 
-    while(i < 9) {
+    int cantPuntos;
+    if((num->longitudError % 3) != 0)
+        cantPuntos = num->longitudError / 3;
+    else
+        cantPuntos = (num->longitudError / 3) - 1;
 
-        if(i != 0 && i % cantGrupos == 0) {
-            fprintf(stream, "%c", '.');
+    int cantCaracteres = (num->longitudError - 1) + cantPuntos;
+    int cantLeidos = num->longitudError;
+    int cantImpresos = 0;
+    char* cadena = malloc(sizeof(char ));
+
+    while (cantCaracteres >= 0) {
+        if(cantImpresos != 0 && cantImpresos != num->longitudError && cantImpresos % 3 == 0) {
+            cadena[cantCaracteres] = '.';
+            cantCaracteres--;
         }
 
-        fprintf(stream, "%c", num->entero[i]);
-        i++;
+        cadena[cantCaracteres] = num->entero[cantLeidos-1];
+        cantLeidos--;
+        cantCaracteres--;
+        cantImpresos++;
     }
 
-    fprintf(stream, "%s", ".");
-    int gruposImpresos = 0;
-
-    while (i < num->longitudError) {
-
-        if(i != 9 && i % cantGrupos == 0) {
-            fprintf(stream, "%c", '.');
-            gruposImpresos++;
-        }
-
-        if(i % 3 == 0 && gruposImpresos % 2 == 0) {
-            fprintf(stream, "%c", '\n');
-        }
-
-        fprintf(stream, "%c", num->entero[i]);
-        i++;
-    }
-
-    fprintf(stream, "%c", '\n');
-
+    fprintf(stream, "%s", cadena);
 }
 
 char* darVuelta(char* numero, int longitud) {

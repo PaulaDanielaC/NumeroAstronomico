@@ -111,7 +111,8 @@ void checkOverflow(NumeroAstronomico *numero, int carry, int longitud) {
         }
     }
 
-    numero->entero[longitud+2] = '\0';
+    numero->entero[longitud] = '\0';
+    numero->longitudError = longitud;
 }
 
 int obtenerNumMasDigitos(int longNum1, int longNum2) {
