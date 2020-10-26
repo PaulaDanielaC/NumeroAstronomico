@@ -45,26 +45,23 @@ void ponerPuntos(NumeroAstronomico* num, char* numero) {
 void dividirNumero(char* numero, unsigned int cantGrupos) {
 
     int longitud = (int) strlen(numero);
-    printf("cant de numeros %d\n", longitud);
     int charPorLinea = (cantGrupos * 3) + cantGrupos;
     char* cadenaAux = malloc(sizeof(char) * longitud);
     int i = 0;
 
-    while (i < charPorLinea && i < longitud) {
+    while (i <= charPorLinea && i < longitud) {
         cadenaAux[i] = numero[i];
         i++;
+
+        if (i % charPorLinea == 0) {
+            cadenaAux[i] = '\n';
+            i++;
+        }
     }
 
-    cadenaAux[i] = '\n';
-    i++;
-    printf("Le meti el barra n\n");
-
     int charRestantes = longitud - charPorLinea;
-    printf("charRestantes %d\n", charRestantes);
     cantGrupos = cantGrupos - 1;
-    printf("cantGrupos %d\n", cantGrupos);
     charPorLinea = (cantGrupos * 3) + cantGrupos;
-    printf("charPorLinea %d\n", charPorLinea);
     int j = i;
     i = 0;
     int k = 1;
@@ -82,8 +79,7 @@ void dividirNumero(char* numero, unsigned int cantGrupos) {
         j++;
     }
 
-    cadenaAux[i] = '\0';
-    printf("numero como deberia quedar %s\n", cadenaAux);
-//    memcpy(numero, cadenaAux, strlen(cadenaAux) + 1);
-//    numero = &cadenaAux;
+    cadenaAux[j] = '\0';
+    printf("numero como deberia quedar \n%s\n", cadenaAux);
+    memcpy(numero, cadenaAux, strlen(cadenaAux) + 1);
 }

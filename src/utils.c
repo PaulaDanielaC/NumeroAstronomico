@@ -58,9 +58,9 @@ void guardarResultado(NumeroAstronomico *num) {
     FILE* archivo;
 
 //  TODO: Sacar hardcodeo
-    num = malloc(sizeof(NumeroAstronomico));
-    num->entero = "34343";
-    num->longitudError = 5;
+//    num = malloc(sizeof(NumeroAstronomico));
+//    num->entero = "34343";
+//    num->longitudError = 5;
 
     printf("Elija un formato de archivo\n");
     printf("1- Texto\n");
