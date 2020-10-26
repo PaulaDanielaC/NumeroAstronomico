@@ -1,40 +1,42 @@
 #include "header/utils.h"
 #include <stdlib.h>
 #include <salida_op.h>
+#include <mem.h>
 
-int menu(int, NumeroAstronomico*);
+int menu(int, NumeroAstronomico *);
 
 int main() {
-    NumeroAstronomico *result = NULL;
+    NumeroAstronomico *result = (NumeroAstronomico *) malloc(sizeof(NumeroAstronomico));
     int opcion;
     int finaliza = 0;
 
     printf("\n\t\t\tCALCULADORA DE NUMEROS ASTRONOMICOS DE IGNACIO GARCIA Y PAULA CHITTARO\n\n"
            "Seleccione la operacion que quiera realizar:\n");
 
-    NumeroAstronomico numerito;
-    numerito.entero = "800700600500400300200100\n";
-    numerito.longitudError = 24;
-    mostrar(&numerito, 3, stdout);
-    printf("Antes del pause\n");
-    system("pause");
+//    NumeroAstronomico numerito;
+//    numerito.entero = "800700600500400300200100\n";
+//    numerito.longitudError = 24;
+//    mostrar(&numerito, 3, stdout);
+//    printf("Antes del pause\n");
+//    system("pause");
 
-//    while (finaliza == 0) {
-//        printf("1.Sumar valores\n2.Verificar igualdad de dos numeros\n3.Verificar menor valor\n"
-//               "4.Guardar resultados\n5.Cargar resultados\n6.Salir\n\n");
-//        printf("Opcion:");
-//        scanf("%d", &opcion);
-//        finaliza = menu(opcion, result);
-//    }
+    while (finaliza == 0) {
+        printf("1.Sumar valores\n2.Verificar igualdad de dos numeros\n3.Verificar menor valor\n"
+               "4.Guardar resultados\n5.Cargar resultados\n6.Salir\n\n");
+        printf("Opcion:");
+        scanf("%d", &opcion);
+        finaliza = menu(opcion, result);
+    }
 
     return 0;
 }
 
-int menu(int opcion, NumeroAstronomico* result) {
+int menu(int opcion, NumeroAstronomico *result) {
     switch (opcion) {
         case 1:
             system("cls");
-            result = realizarSuma();
+            NumeroAstronomico algo = *realizarSuma();
+            memcpy(result, &algo, sizeof(algo.longitudError));
             return 0;
         case 2:
             system("cls");
@@ -51,9 +53,9 @@ int menu(int opcion, NumeroAstronomico* result) {
         case 5:
             system("cls");
             cargarResultado();
-            //limpiarResultado(result);
             return 0;
         case 6:
+            limpiarResultado(result);
             exit(0);
         default:
             printf("Opcion Invalida, ingrese nuevamente\n");

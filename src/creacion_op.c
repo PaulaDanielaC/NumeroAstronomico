@@ -12,7 +12,6 @@ static int obtenerNumeroRandom();
 NumeroAstronomico* crearDesdeCadena(char* cadena) {
     NumeroAstronomico* numAstro = malloc(sizeof(NumeroAstronomico));
     int longitud = (int) strlen(cadena);
-    printf("Longitud: %d\n", longitud);
     numAstro->entero = cadena;
     numAstro->longitudError = longitud;
     return numAstro;
