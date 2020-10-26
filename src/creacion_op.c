@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include "../header/errores.h"
 
-static char* agregarCerosAlfinal(int);
+static char* agregarCerosAlfinal(unsigned int);
 static int obtenerNumeroRandom();
 
 NumeroAstronomico* crearDesdeCadena(char* cadena) {
@@ -19,14 +19,14 @@ NumeroAstronomico* crearDesdeCadena(char* cadena) {
 }
 
 NumeroAstronomico* crearDesdeCifraSeguidaDeCeros(unsigned int cifra, unsigned int cantCeros) {
-    NumeroAstronomico* numAstro = malloc(sizeof(NumeroAstronomico));
+    NumeroAstronomico* numAstro = (NumeroAstronomico*) malloc(sizeof(NumeroAstronomico));
 
     if (cifra == 0) { 
         numAstro->longitudError = CadenaNula; 
         return numAstro;
     }
 
-    char* numero = malloc(cifra + cantCeros);
+    char* numero = (char*) malloc(cifra + cantCeros);
     sprintf(numero, "%d", cifra);
 
     numAstro->entero = numero;
@@ -53,7 +53,7 @@ static int obtenerNumeroRandom() {  //TODO: Ver esto!
     return rand();
 }
 
-static char* agregarCerosAlfinal(int cantidad) {
+static char* agregarCerosAlfinal(unsigned int cantidad) {
     char* cadenaCeros = malloc(cantidad);
     memset(cadenaCeros, '0', cantidad);
     return cadenaCeros;

@@ -16,6 +16,7 @@ int main() {
     numerito.entero = "800700600500400300200100\n";
     numerito.longitudError = 24;
     mostrar(&numerito, 3, stdout);
+    printf("Antes del pause\n");
     system("pause");
 
 //    while (finaliza == 0) {
