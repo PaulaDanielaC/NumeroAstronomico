@@ -1,6 +1,5 @@
 #include "header/utils.h"
 #include <stdlib.h>
-#include <salida_op.h>
 #include <mem.h>
 
 int menu(int, NumeroAstronomico *);
@@ -13,18 +12,11 @@ int main() {
     printf("\n\t\t\tCALCULADORA DE NUMEROS ASTRONOMICOS DE IGNACIO GARCIA Y PAULA CHITTARO\n\n"
            "Seleccione la operacion que quiera realizar:\n");
 
-//    NumeroAstronomico numerito;
-//    numerito.entero = "800700600500400300200100\n";
-//    numerito.longitudError = 24;
-//    mostrar(&numerito, 3, stdout);
-//    printf("Antes del pause\n");
-//    system("pause");
-
     while (finaliza == 0) {
         printf("1.Sumar valores\n2.Verificar igualdad de dos numeros\n3.Verificar menor valor\n"
                "4.Guardar resultados\n5.Cargar resultados\n6.Salir\n\n");
-        printf("Opcion:");
-        scanf("%d", &opcion);
+        printf("Opcion:\n");
+        opcion = getc(stdin);
         finaliza = menu(opcion, result);
     }
 
@@ -33,32 +25,33 @@ int main() {
 
 int menu(int opcion, NumeroAstronomico *result) {
     switch (opcion) {
-        case 1:
+        case 49:
             system("cls");
-            NumeroAstronomico algo = *realizarSuma();
-            memcpy(result, &algo, sizeof(algo.longitudError));
+            NumeroAstronomico resultado = *realizarSuma();
+            memcpy(result, &resultado, sizeof(resultado.longitudError));
             return 0;
-        case 2:
+        case 50:
             system("cls");
             verificarIgualdad();
             return 0;
-        case 3:
+        case 51:
             system("cls");
             obtenerMenor(result);
             return 0;
-        case 4:
+        case 52:
             system("cls");
             guardarResultado(result);
             return 0;
-        case 5:
+        case 53:
             system("cls");
             cargarResultado();
             return 0;
-        case 6:
+        case 54:
             limpiarResultado(result);
             exit(0);
         default:
-            printf("Opcion Invalida, ingrese nuevamente\n");
+            system("cls");
+            printf("Opcion Invalida, ingrese nuevamente\n\n");
             return 0;
     }
 }
