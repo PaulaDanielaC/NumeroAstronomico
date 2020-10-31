@@ -13,40 +13,46 @@ NumeroAstronomico *read(FILE *stream) {
     return stream;
 }
 
-FILE *print(NumeroAstronomico *num, FILE *stream) {
+FILE *print(NumeroAstronomico *num, FILE *stream) { //Listo, funciona
+
     if (stream == NULL) {
-        perror("Error leyendo el archivo: \n");
+        perror("Error creando el archivo: \n");
         return NULL;
     }
 
-    fwrite(num->entero, strlen(num->entero) + 1, 1, stream);
+    fwrite(num->entero, num->longitudError * sizeof(char), 1, stream);
+    system("pause");
     return stream;
 }
 
-FILE *write(NumeroAstronomico *numero, FILE *stream) {
+FILE *write(NumeroAstronomico *num, FILE *stream) { // Listo, funciona
     if (stream == NULL) {
-        perror("Error leyendo el archivo: \n");
+        perror("Error creando el archivo: \n");
         return NULL;
     }
 
-    fwrite(numero->entero, strlen(numero->entero) + 1, 1, stream);
+    fwrite(num->entero, num->longitudError * sizeof(char), 1, stream);
+    system("pause");
     return stream;
 }
 
 NumeroAstronomico *scan(FILE *stream) {
-    stream = fopen(ARCHIVO_TEXTO, "r");
     NumeroAstronomico *numero = malloc(sizeof(NumeroAstronomico));
+    stream = fopen(ARCHIVO_TEXTO, "r");
+    int i = 0;
 
     if (stream == NULL) {
         perror("Error leyendo el archivo: \n");
         return NULL;
     }
 
-    while (stream) {
-        fread(numero->entero, 1, sizeof(char), stream);
+    while (!feof(stream)) {
+        fread(&numero->entero[i], 1, sizeof(char), stream);
+        i++;
     }
 
+    numero->longitudError = (int) strlen(numero->entero);
     printf("resultado archivo %s\n", numero->entero);
-
+    system("pause");
     return numero;
 }

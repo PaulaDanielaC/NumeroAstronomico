@@ -1,7 +1,7 @@
-#include "op_helper.h"
+#include "ui_helper.h"
 #include "errores.h"
 #include <stdlib.h>
-#include <utils.h>
+#include <mem.h>
 
 void menu(NumeroAstronomico *);
 
@@ -15,10 +15,10 @@ int main() {
     while (!tieneError(result))
         menu(result);
 
-    int error_code = getTipoDeError(result);
+    int errorCode = getTipoDeError(result);
     imprimirError(result);
     limpiarResultado(result);
-    return error_code;
+    return errorCode;
 }
 
 void menu(NumeroAstronomico *result) {

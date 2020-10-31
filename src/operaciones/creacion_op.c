@@ -4,7 +4,7 @@
 #include <time.h>
 #include <string.h>
 #include <stdio.h>
-#include "../header/errores.h"
+#include "errores.h"
 
 static char* agregarCerosAlfinal(unsigned int);
 static int obtenerNumeroRandom();

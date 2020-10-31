@@ -9,6 +9,7 @@ int esOverflow(NumeroAstronomico*);
 int esPunteroNulo(NumeroAstronomico*);
 int getTipoDeError(NumeroAstronomico*);
 int tieneError(NumeroAstronomico*);
+void imprimirError(NumeroAstronomico*);
 
 enum TipoDeError {
     Ninguno = 0,

@@ -12,9 +12,9 @@ add_executable(NumeroAstronomico
         header/NumeroAstronomico.h
         header/persist.h
         header/salida_op.h
-        header/op_helper.h
-        src/creacion_op.c
-        src/errores.c
-        src/salida_op.c
-        src/ui/op_helper.c
-        src/ui/main.c src/aritm_op.c src/persistencia_op.c src/utils.c header/utils.h)
+        header/ui_helper.h
+        src/operaciones/creacion_op.c
+        src/operaciones/errores.c
+        src/operaciones/salida_op.c
+        src/ui/ui_helper.c
+        src/ui/main.c src/operaciones/aritm_op.c src/operaciones/persistencia_op.c)

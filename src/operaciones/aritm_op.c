@@ -1,8 +1,8 @@
-#include "../header/aritm_op.h"
+#include "aritm_op.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "../header/errores.h"
+#include "errores.h"
 
 #define NUM_LIMIT 100
 

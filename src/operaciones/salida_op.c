@@ -11,7 +11,7 @@ void mostrar(NumeroAstronomico *num, unsigned int cantGrupos, FILE *stream) {
     ponerPuntos(num, cadena);
     dividirNumero(cadena, cantGrupos);
     fprintf(stream, "%s\n", cadena);
-    free(cadena);
+    system("pause");
 }
 
 void ponerPuntos(NumeroAstronomico *num, char *numero) {

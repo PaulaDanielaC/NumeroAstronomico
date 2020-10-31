@@ -1,4 +1,4 @@
-#include "op_helper.h"
+#include "ui_helper.h"
 #include "aritm_op.h"
 #include "creacion_op.h"
 #include "errores.h"
@@ -34,7 +34,7 @@ void realizarSuma(NumeroAstronomico *result) {
         return;
     }
 
-    result = sumar(num1, num2);
+    memcpy(result, sumar(num1, num2), sizeof(NumeroAstronomico));
     if (tieneError(result))
         return;
 
@@ -78,22 +78,22 @@ void obtenerMenor() {
 }
 
 void guardarResultado(NumeroAstronomico *num) {
-    int opcion;
     FILE* archivo;
 
     printf("Elija un formato de archivo\n");
     printf("1- Texto\n");
     printf("2- Binario\n");
-    scanf("%d", &opcion);
+    fflush(stdin);
+    int opcion = getc(stdin);
 
     switch (opcion) {
-        case 1:
-            archivo = fopen(ARCHIVO_TEXTO, "w+");
+        case 49:
+            archivo = fopen(ARCHIVO_TEXTO, "w");
             print(num, archivo);
             fclose(archivo);
             break;
-        case 2:
-            archivo = fopen(ARCHIVO_BINARIO, "wb+");
+        case 50:
+            archivo = fopen(ARCHIVO_BINARIO, "wb");
             write(num, archivo);
             fclose(archivo);
             break;
@@ -103,27 +103,27 @@ void guardarResultado(NumeroAstronomico *num) {
     }
 }
 
-void cargarResultado(FILE* stream) {
-    NumeroAstronomico *num;
-    int opcion;
+void cargarResultado() {
+    NumeroAstronomico *num = (NumeroAstronomico*) malloc(sizeof(NumeroAstronomico));
+    FILE* stream = NULL;
 
     printf("Elija un formato de archivo\n");
     printf("1- Texto\n");
     printf("2- Binario\n");
-    scanf("%d", &opcion);
+    fflush(stdin);
+    int opcion = getc(stdin);
 
     switch (opcion) {
-        case 1:
-            num = scan(stream);
+        case 49:
+            memcpy(num, scan(stream), sizeof(NumeroAstronomico));
             break;
-        case 2:
+        case 50:
             num = read(stream);
             break;
         default:
             printf("Opcion invalida\n");
             break;
     }
-//    return num;
 }
 
 void limpiarResultado(NumeroAstronomico *num) {
