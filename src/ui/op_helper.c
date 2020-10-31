@@ -15,33 +15,34 @@ void obtenerDigitosInput(NumeroAstronomico*);
 NumeroAstronomico* armarCifraSeguidaDeCeros();
 int inputInvalido(unsigned int);
 
-NumeroAstronomico* realizarSuma() {
-    NumeroAstronomico *num1, *num2, *result = (NumeroAstronomico*) malloc(sizeof(NumeroAstronomico));
+void realizarSuma(NumeroAstronomico *result) {
+    NumeroAstronomico *num1, *num2;
 
     printf("Primer valor\n");
     num1 = crearNumero();
-    printf("\nSegundo valor\n");
-    num2 = crearNumero();
-
     if (tieneError(num1)) {
         result->longitudError = num1->longitudError;
-        return result;
+        limpiarResultado(num1);
+        return;
     }
 
+    printf("\nSegundo valor\n");
+    num2 = crearNumero();
     if (tieneError(num2)) {
         result->longitudError = num2->longitudError;
-        return result;
+        limpiarResultado(num2);
+        return;
     }
 
     result = sumar(num1, num2);
-
     if (tieneError(result))
-        return result;
+        return;
 
     system("cls");
     printf("El resultado de la suma es:\n");
     mostrar(result, 3, stdout);
-    return result;
+    limpiarResultado(num1);
+    limpiarResultado(num2);
 }
 
 void verificarIgualdad() {
@@ -145,11 +146,12 @@ void obtenerDigitosInput(NumeroAstronomico* num) {
             cantCaracteres++;
         } else {
             num->longitudError = CadenaInvalida;
+            return;
         }
     }
 
     num->entero[cantCaracteres] = '\0';
-    num->longitudError = strlen(num->entero);
+    num->longitudError = (int) strlen(num->entero);
 }
 
 NumeroAstronomico *crearNumero() {
