@@ -68,7 +68,7 @@ int sonIguales(NumeroAstronomico *num1, NumeroAstronomico *num2) {
 }
 
 int esMenor(NumeroAstronomico *num1, NumeroAstronomico *num2) {
-    if (getTipoDeError(num1) == Ninguno || getTipoDeError(num2) == Ninguno) { // TODO: Idem de sonIguales
+    if (getTipoDeError(num1) == Ninguno && getTipoDeError(num2) == Ninguno) {
         if (strcmp(num1->entero, num2->entero) < 0) {
             printf("\n%s es menor \n\n\n", num1->entero);
             return 1;
