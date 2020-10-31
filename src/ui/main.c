@@ -1,66 +1,54 @@
 #include "op_helper.h"
 #include "errores.h"
 #include <stdlib.h>
-#include <mem.h>
 #include <utils.h>
 
-int menu(int, NumeroAstronomico *);
+void menu(NumeroAstronomico *);
 
 int main() {
-    NumeroAstronomico *result = (NumeroAstronomico *) malloc(sizeof(NumeroAstronomico));
-    int opcion;
-    int finaliza = 0;
-
     printf("\n\t\t\tCALCULADORA DE NUMEROS ASTRONOMICOS DE IGNACIO GARCIA Y PAULA CHITTARO\n\n"
            "Seleccione la operacion que quiera realizar:\n");
 
-    while (finaliza == 0) {
-        printf("1.Sumar valores\n2.Verificar igualdad de dos numeros\n3.Verificar menor valor\n"
-               "4.Guardar resultados\n5.Cargar resultados\n6.Salir\n\n");
-        printf("Opcion:\n");
-        opcion = getc(stdin);
-        finaliza = menu(opcion, result);
-    }
+    NumeroAstronomico *result = (NumeroAstronomico *) malloc(sizeof(NumeroAstronomico));
+    result->longitudError = Ninguno;
 
-    return result->longitudError;
+    while (!tieneError(result))
+        menu(result);
+
+    int error_code = getTipoDeError(result);
+    imprimirError(result);
+    limpiarResultado(result);
+    return error_code;
 }
 
-int menu(int opcion, NumeroAstronomico *result) {
+void menu(NumeroAstronomico *result) {
+    printf("1.Sumar valores\n2.Verificar igualdad de dos numeros\n3.Verificar menor valor\n"
+           "4.Guardar resultados\n5.Cargar resultados\n6.Salir\n\nOpcion:\n");
+    int opcion = getc(stdin);
+
     switch (opcion) {
-        case 49: // TODO: Despues acomodo este case gigante
-            system("cls");
-            NumeroAstronomico resultado = *realizarSuma();
-
-            if (tieneError(&resultado)) {
-                imprimirError(&resultado);
-                limpiarResultado(result);
-                return resultado.longitudError;
-            }
-
-            memcpy(result, &resultado, sizeof(resultado.longitudError));
-            return Ninguno;
+        case 49:
+            realizarSuma(result);
+            break;
         case 50:
-            system("cls");
             verificarIgualdad();
-            return Ninguno;
+            break;
         case 51:
-            system("cls");
             obtenerMenor(result);
-            return Ninguno;
+            break;
         case 52:
-            system("cls");
             guardarResultado(result);
-            return Ninguno;
+            break;
         case 53:
-            system("cls");
             cargarResultado();
-            return Ninguno;
+            break;
         case 54:
             limpiarResultado(result);
             exit(Ninguno);
         default:
-            system("cls");
             printf("Opcion Invalida, ingrese nuevamente\n\n");
-            return Ninguno;
+            break;
     }
+
+    system("cls");
 }
