@@ -3,6 +3,8 @@
 
 #include "NumeroAstronomico.h"
 
+#define NUM_LIMIT 100
+
 NumeroAstronomico* sumar(NumeroAstronomico*, NumeroAstronomico*);
 int sonIguales(NumeroAstronomico*, NumeroAstronomico*);
 int esMenor(NumeroAstronomico*, NumeroAstronomico*);

@@ -8,12 +8,10 @@
 #include <ctype.h>
 #include <mem.h>
 
-#define TOTAL_LIMIT 100
-
 NumeroAstronomico *crearNumero();
-void obtenerDigitosInput(NumeroAstronomico*);
 NumeroAstronomico* armarCifraSeguidaDeCeros();
 int inputInvalido(unsigned int);
+char* obtenerInput();
 
 void realizarSuma(NumeroAstronomico *result) {
     NumeroAstronomico *num1, *num2;
@@ -131,32 +129,8 @@ void limpiarResultado(NumeroAstronomico *num) {
     free(num);
 }
 
-/* Funciones auxiliares */
-
-void obtenerDigitosInput(NumeroAstronomico* num) {
-
-    printf("Numero:\n");
-    int cantCaracteres = 0;
-    char input;
-
-    fflush(stdin);
-    while ((input = getchar()) != '\n' && input != EOF && cantCaracteres <= TOTAL_LIMIT) {
-        if (isdigit(input)) {
-            num->entero[cantCaracteres] = input;
-            cantCaracteres++;
-        } else {
-            num->longitudError = CadenaInvalida;
-            return;
-        }
-    }
-
-    num->entero[cantCaracteres] = '\0';
-    num->longitudError = (int) strlen(num->entero);
-}
-
 NumeroAstronomico *crearNumero() {
     NumeroAstronomico *num = (NumeroAstronomico*) malloc(sizeof(NumeroAstronomico));
-    num->entero = (char*) malloc(TOTAL_LIMIT);
     num->longitudError = Ninguno;
     unsigned int opcion;
 
@@ -168,7 +142,7 @@ NumeroAstronomico *crearNumero() {
 
     switch (opcion) {
         case 49:
-            obtenerDigitosInput(num);
+            num = crearDesdeCadena(obtenerInput());
             break;
         case 50:
             num = armarCifraSeguidaDeCeros();
@@ -213,4 +187,97 @@ int inputInvalido(unsigned int input) {
         return 1;
     }
     return 0;
+}
+
+void ponerPuntos(NumeroAstronomico *num, char *numero) {
+    int cantPuntos;
+    if ((num->longitudError % 3) != 0)
+        cantPuntos = num->longitudError / 3;
+    else
+        cantPuntos = (num->longitudError / 3) - 1;
+
+    int cantCaracteres = (num->longitudError - 1) + cantPuntos;
+    int cantLeidos = num->longitudError;
+    int cantImpresos = 0;
+
+    while (cantCaracteres >= 0) {
+
+        if (cantImpresos != 0 && cantImpresos != num->longitudError && cantImpresos % 3 == 0) {
+            numero[cantCaracteres] = '.';
+            cantCaracteres--;
+        }
+
+        numero[cantCaracteres] = num->entero[cantLeidos - 1];
+        cantLeidos--;
+        cantCaracteres--;
+        cantImpresos++;
+    }
+
+    numero[(num->longitudError) + cantPuntos] = '\0';
+}
+
+char* obtenerInput() {
+    printf("Numero:\n");
+    char* cadena = (char*) malloc(NUM_LIMIT);
+    int cantCaracteres = 0;
+    char input;
+
+    fflush(stdin);
+    while ((input = getchar()) != '\n' && input != EOF && cantCaracteres <= NUM_LIMIT) {
+        if (isdigit(input)) {
+            cadena[cantCaracteres] = input;
+            cantCaracteres++;
+        } else {
+            free(cadena);
+            return NULL;
+        }
+    }
+
+    cadena[cantCaracteres] = '\0';
+    return cadena;
+}
+
+void dividirNumero(char *numero, unsigned int cantGrupos) {
+    int j = 0;
+    int saltosLinea = 0;
+    int longitud = (int) strlen(numero);
+    unsigned int charPorLinea = (cantGrupos * 3) + cantGrupos;
+    char *cadenaAux = (char *) malloc(sizeof(char) * longitud);
+    int i = 0;
+
+    if (charPorLinea > longitud) {
+        return;
+    }
+
+    while (i <= charPorLinea && i < longitud) {
+        cadenaAux[i] = numero[i];
+        i++;
+
+        if (i % charPorLinea == 0) {
+            cadenaAux[i] = '\n';
+            j = i + 1;
+            saltosLinea++;
+            i = 0;
+            break;
+        }
+    }
+
+    cantGrupos = cantGrupos - 1;
+    charPorLinea = (cantGrupos * 3) + cantGrupos;
+
+    while (j < longitud + saltosLinea) {
+        if (i % charPorLinea == 0 && i != 0) {
+            cadenaAux[j] = '\n';
+            i = 0;
+            j++;
+            saltosLinea++;
+        }
+
+        cadenaAux[j] = numero[j - saltosLinea];
+        i++;
+        j++;
+    }
+
+    cadenaAux[j] = '\0';
+    memcpy(numero, cadenaAux, strlen(cadenaAux) + 1);
 }

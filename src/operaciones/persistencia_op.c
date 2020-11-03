@@ -4,13 +4,24 @@
 #include "persist.h"
 
 NumeroAstronomico *read(FILE *stream) {
-    stream = fopen(ARCHIVO_TEXTO, "r");
+    NumeroAstronomico *numero = malloc(sizeof(NumeroAstronomico));
+    stream = fopen(ARCHIVO_BINARIO, "rb");
+    int i = 0;
+
     if (stream == NULL) {
         perror("Error leyendo el archivo: \n");
         return NULL;
     }
 
-    return stream;
+    while (!feof(stream)) {
+        fread(&numero->entero[i], 1, sizeof(char), stream);
+        i++;
+    }
+
+    numero->longitudError = (int) strlen(numero->entero);
+    printf("resultado archivo %s\n", numero->entero);
+    system("pause");
+    return numero;
 }
 
 FILE *print(NumeroAstronomico *num, FILE *stream) { //Listo, funciona

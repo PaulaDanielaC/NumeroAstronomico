@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include "errores.h"
 
-#define NUM_LIMIT 100
-
 void setOverflowDigit(NumeroAstronomico*, int, int);
 int obtenerNumMasDigitos(int, int);
 int checkCarry(int*);

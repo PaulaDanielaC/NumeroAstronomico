@@ -1,7 +1,6 @@
 #include "ui_helper.h"
 #include "errores.h"
 #include <stdlib.h>
-#include <mem.h>
 
 void menu(NumeroAstronomico *);
 

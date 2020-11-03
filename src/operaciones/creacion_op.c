@@ -6,28 +6,29 @@
 #include <stdio.h>
 #include "errores.h"
 
-static char* agregarCerosAlfinal(unsigned int);
+static char *agregarCerosAlfinal(unsigned int);
+
 static int obtenerNumeroRandom();
 
-NumeroAstronomico* crearDesdeCifraSeguidaDeCeros(unsigned int cifra, unsigned int cantCeros) {
-    NumeroAstronomico* numAstro = (NumeroAstronomico*) malloc(sizeof(NumeroAstronomico));
+NumeroAstronomico *crearDesdeCifraSeguidaDeCeros(unsigned int cifra, unsigned int cantCeros) {
+    NumeroAstronomico *numAstro = (NumeroAstronomico *) malloc(sizeof(NumeroAstronomico));
 
-    if (cifra == 0) { 
-        numAstro->longitudError = CadenaNula; 
+    if (cifra == 0) {
+        numAstro->longitudError = CadenaNula;
         return numAstro;
     }
 
-    char* numero = (char*) malloc(cifra + cantCeros);
+    char *numero = (char *) malloc(cifra + cantCeros);
     sprintf(numero, "%d\n", cifra);
 
     numAstro->entero = numero;
-    memcpy(numAstro->entero + 2, agregarCerosAlfinal(cantCeros), cantCeros); //<-- TODO: Sacar ese 2 hardcodeado de ahi
+    memcpy(numAstro->entero, agregarCerosAlfinal(cantCeros), cantCeros);
     numAstro->longitudError = cifra + cantCeros;
     return numAstro;
 }
 
-NumeroAstronomico* crearAleatorio() {
-    NumeroAstronomico* numAstro = malloc(sizeof(NumeroAstronomico));
+NumeroAstronomico *crearAleatorio() {
+    NumeroAstronomico *numAstro = malloc(sizeof(NumeroAstronomico));
     int cifra = obtenerNumeroRandom();
     printf("Numero que genere: %i\n", cifra);
     numAstro->entero = malloc(cifra);
@@ -36,16 +37,33 @@ NumeroAstronomico* crearAleatorio() {
     return numAstro;
 }
 
+NumeroAstronomico *crearDesdeCadena(char *cadena) {
+    NumeroAstronomico *num = (NumeroAstronomico *) malloc(sizeof(NumeroAstronomico));
+    int longitud = (int) strlen(cadena);
+    num->entero = (char*) malloc(longitud);
+
+    if (cadena != NULL) {
+        memcpy(num->entero, cadena, longitud + 1);
+        num->entero[longitud] = '\0';
+        num->longitudError = longitud;
+        free(cadena);
+    } else {
+        num->longitudError = CadenaInvalida;
+    }
+
+    return num;
+}
+
 /* Operacion auxiliares */
 
-static int obtenerNumeroRandom() {  //TODO: Ver esto!
+static int obtenerNumeroRandom() {
     time_t sysTime;
     srand((unsigned) time(&sysTime));
     return rand();
 }
 
-static char* agregarCerosAlfinal(unsigned int cantidad) {
-    char* cadenaCeros = malloc(cantidad);
+static char *agregarCerosAlfinal(unsigned int cantidad) {
+    char *cadenaCeros = malloc(cantidad);
     memset(cadenaCeros, '0', cantidad);
     return cadenaCeros;
 }
