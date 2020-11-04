@@ -33,7 +33,7 @@ void menu(NumeroAstronomico *result) {
             verificarIgualdad();
             break;
         case 51:
-            obtenerMenor(result);
+            obtenerMenor();
             break;
         case 52:
             guardarResultado(result);

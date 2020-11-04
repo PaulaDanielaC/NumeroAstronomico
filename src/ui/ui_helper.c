@@ -225,6 +225,9 @@ char* obtenerInput() {
     fflush(stdin);
     while ((input = getchar()) != '\n' && input != EOF && cantCaracteres <= NUM_LIMIT) {
         if (isdigit(input)) {
+            if (cantCaracteres >= NUM_LIMIT)
+                printf("La cadena ingresada supero los 100 digitos, el excedente sera descartado\n");
+
             cadena[cantCaracteres] = input;
             cantCaracteres++;
         } else {

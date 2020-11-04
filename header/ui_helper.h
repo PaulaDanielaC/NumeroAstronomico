@@ -10,7 +10,7 @@ void obtenerMenor();
 void guardarResultado(NumeroAstronomico*);
 void cargarResultado();
 void limpiarResultado(NumeroAstronomico*);
-void ponerPuntos(NumeroAstronomico *num, char *numero);
-void dividirNumero(char *numero, unsigned int cantGrupos);
+void ponerPuntos(NumeroAstronomico *, char *);
+void dividirNumero(char*, unsigned int);
 
 #endif
