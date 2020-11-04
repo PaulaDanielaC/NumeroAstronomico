@@ -183,7 +183,7 @@ NumeroAstronomico* armarCifraSeguidaDeCeros() {
 }
 
 int inputInvalido(unsigned int input) {
-    if (input == EINVAL || input == EOF) {
+    if (/*input == EINVAL */|| input == EOF) { //TODO: Ver que onda con Einval
         return 1;
     }
     return 0;
