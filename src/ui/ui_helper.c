@@ -163,7 +163,7 @@ NumeroAstronomico* armarCifraSeguidaDeCeros() {
     unsigned int cifra, cantCeros;
     fflush(stdin);
 
-    printf("Ingrese la cifra: \n");
+    printf("Ingrese la cifra: ");
     cifra = scanf("%d", &cifra);
 
     if (inputInvalido(cifra)) {
@@ -171,7 +171,7 @@ NumeroAstronomico* armarCifraSeguidaDeCeros() {
         return NULL;
     }
 
-    printf("Ingrese la cantidad de ceros: \n");
+    printf("Ingrese la cantidad de ceros: ");
     cifra = scanf("%d", &cantCeros);
 
     if (inputInvalido(cifra)) {
