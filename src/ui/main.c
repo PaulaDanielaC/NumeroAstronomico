@@ -5,7 +5,7 @@
 void menu(NumeroAstronomico *);
 
 int main() {
-    printf("\n\t\t\tCALCULADORA DE NUMEROS ASTRONOMICOS DE IGNACIO GARCIA Y PAULA CHITTARO\n\n"
+    printf("\n\t\t\tCALCULADORA  DE NUMEROS ASTRONOMICOS DE IGNACIO GARCIA Y PAULA CHITTARO\n\n"
            "Seleccione la operacion que quiera realizar:\n");
 
     NumeroAstronomico *result = (NumeroAstronomico *) malloc(sizeof(NumeroAstronomico));
