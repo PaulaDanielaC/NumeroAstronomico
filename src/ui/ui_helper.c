@@ -16,7 +16,7 @@ char* obtenerInput();
 void realizarSuma(NumeroAstronomico *result) {
     NumeroAstronomico *num1, *num2;
 
-    printf("\nPrimer valor\n");
+    printf("Primer valor\n");
     num1 = crearNumero();
     if (tieneError(num1)) {
         result->longitudError = num1->longitudError;
@@ -135,8 +135,8 @@ NumeroAstronomico *crearNumero() {
     unsigned int opcion;
 
     printf("1.Ingresar valor\n2.Ingresar cifra significativa y cantidad de ceros\n"
-           "3.Crear numero aleatorio\n\n");
-    printf("Opcion:");
+           "3.Crear numero aleatorio\n");
+    printf("Opcion:\n");
     fflush(stdin);
     opcion = getc(stdin);
 
@@ -164,7 +164,7 @@ NumeroAstronomico* armarCifraSeguidaDeCeros() {
     fflush(stdin);
 
     printf("Ingrese la cifra: \n");
-    cifra = scanf("%d", &cifra);
+    scanf("%d", &cifra);
 
     if (inputInvalido(cifra)) {
         perror("Error");
@@ -172,9 +172,9 @@ NumeroAstronomico* armarCifraSeguidaDeCeros() {
     }
 
     printf("Ingrese la cantidad de ceros: \n");
-    cifra = scanf("%d", &cantCeros);
+    scanf("%d", &cantCeros);
 
-    if (inputInvalido(cifra)) {
+    if (inputInvalido(cantCeros)) {
         perror("Error");
         return NULL;
     }
@@ -183,7 +183,7 @@ NumeroAstronomico* armarCifraSeguidaDeCeros() {
 }
 
 int inputInvalido(unsigned int input) {
-    if (/*input == EINVAL || */ input == EOF) { //TODO: Ver que onda con Einval
+    if (input == EINVAL || input == EOF) {
         return 1;
     }
     return 0;
@@ -217,7 +217,7 @@ void ponerPuntos(NumeroAstronomico *num, char *numero) {
 }
 
 char* obtenerInput() {
-    printf("Numero:");
+    printf("Numero:\n");
     char* cadena = (char*) malloc(NUM_LIMIT);
     int cantCaracteres = 0;
     char input;
@@ -225,9 +225,6 @@ char* obtenerInput() {
     fflush(stdin);
     while ((input = getchar()) != '\n' && input != EOF && cantCaracteres <= NUM_LIMIT) {
         if (isdigit(input)) {
-            if (cantCaracteres >= NUM_LIMIT)
-                printf("La cadena ingresada supero los 100 digitos, el excedente sera descartado\n");
-
             cadena[cantCaracteres] = input;
             cantCaracteres++;
         } else {
@@ -235,6 +232,9 @@ char* obtenerInput() {
             return NULL;
         }
     }
+
+    if (cantCaracteres >= NUM_LIMIT)
+        printf("La cadena ingresada supero los 100 digitos, el excedente sera descartado\n");
 
     cadena[cantCaracteres] = '\0';
     return cadena;

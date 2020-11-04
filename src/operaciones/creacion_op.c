@@ -18,11 +18,12 @@ NumeroAstronomico *crearDesdeCifraSeguidaDeCeros(unsigned int cifra, unsigned in
         return numAstro;
     }
 
-    char *numero = (char *) malloc(cifra + cantCeros);
-    sprintf(numero, "%d\n", cifra);
+    char* numero = malloc(cifra);
+    sprintf(numero, "%d", cifra);
+    char* ceros = agregarCerosAlfinal(cantCeros);
+    strcat(numero, ceros);
 
     numAstro->entero = numero;
-    memcpy(numAstro->entero, agregarCerosAlfinal(cantCeros), cantCeros);
     numAstro->longitudError = cifra + cantCeros;
     return numAstro;
 }
@@ -63,7 +64,8 @@ static int obtenerNumeroRandom() {
 }
 
 static char *agregarCerosAlfinal(unsigned int cantidad) {
-    char *cadenaCeros = malloc(cantidad);
+    char *cadenaCeros = malloc(cantidad + 1);
     memset(cadenaCeros, '0', cantidad);
+    cadenaCeros[cantidad] = '\0';
     return cadenaCeros;
 }
