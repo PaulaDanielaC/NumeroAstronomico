@@ -16,7 +16,7 @@ char* obtenerInput();
 void realizarSuma(NumeroAstronomico *result) {
     NumeroAstronomico *num1, *num2;
 
-    printf("Primer valor\n");
+    printf("\nPrimer valor\n");
     num1 = crearNumero();
     if (tieneError(num1)) {
         result->longitudError = num1->longitudError;
@@ -135,8 +135,8 @@ NumeroAstronomico *crearNumero() {
     unsigned int opcion;
 
     printf("1.Ingresar valor\n2.Ingresar cifra significativa y cantidad de ceros\n"
-           "3.Crear numero aleatorio\n");
-    printf("Opcion:\n");
+           "3.Crear numero aleatorio\n\n");
+    printf("Opcion:");
     fflush(stdin);
     opcion = getc(stdin);
 
@@ -183,7 +183,7 @@ NumeroAstronomico* armarCifraSeguidaDeCeros() {
 }
 
 int inputInvalido(unsigned int input) {
-    if (input == EINVAL || input == EOF) {
+    if (/*input == EINVAL || */ input == EOF) { //TODO: Ver que onda con Einval
         return 1;
     }
     return 0;
@@ -217,7 +217,7 @@ void ponerPuntos(NumeroAstronomico *num, char *numero) {
 }
 
 char* obtenerInput() {
-    printf("Numero:\n");
+    printf("Numero:");
     char* cadena = (char*) malloc(NUM_LIMIT);
     int cantCaracteres = 0;
     char input;
