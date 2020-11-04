@@ -1,15 +1,16 @@
 #include "aritm_op.h"
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
 #include "errores.h"
 
-void setOverflowDigit(NumeroAstronomico*, int, int);
-int obtenerNumMasDigitos(int, int);
-int checkCarry(int*);
+void setOverflowDigit(NumeroAstronomico *, int, int);
 
-NumeroAstronomico* sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
-    NumeroAstronomico *resultado = (NumeroAstronomico*) malloc(sizeof(NumeroAstronomico));
+int obtenerNumMasDigitos(int, int);
+
+int checkCarry(int *);
+
+NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) { //Documentado
+    NumeroAstronomico *resultado = (NumeroAstronomico *) malloc(sizeof(NumeroAstronomico));
     int numMasLargo = obtenerNumMasDigitos(num1->longitudError, num2->longitudError);
     resultado->entero = malloc(numMasLargo + 1);
     int long1 = num1->longitudError - 1;
@@ -55,28 +56,19 @@ NumeroAstronomico* sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
 }
 
 int sonIguales(NumeroAstronomico *num1, NumeroAstronomico *num2) {
-    if (getTipoDeError(num1) == Ninguno &&
-        getTipoDeError(num2) == Ninguno) {
-        if (strcmp(num1->entero, num2->entero) == 0) {
-            return 1;
-        }
+    if (strcmp(num1->entero, num2->entero) == 0) {
+        return 1;
     }
 
     return 0;
 }
 
 int esMenor(NumeroAstronomico *num1, NumeroAstronomico *num2) {
-    if (getTipoDeError(num1) == Ninguno && getTipoDeError(num2) == Ninguno) {
-        if (strcmp(num1->entero, num2->entero) < 0) {
-            printf("\n%s es menor \n\n\n", num1->entero);
-            return 1;
-        }
-
-        printf("\n%s es menor \n\n\n", num2->entero);
-        return 0;
+    if (strcmp(num1->entero, num2->entero) < 0) {
+        return 1;
     }
 
-    return -1;
+    return 0;
 }
 
 int checkCarry(int *resultado) {
@@ -91,11 +83,12 @@ int checkCarry(int *resultado) {
     return carryDigit;
 }
 
-void setOverflowDigit(NumeroAstronomico* numero, int carry, int longitud) {
+void setOverflowDigit(NumeroAstronomico *numero, int carry, int longitud) {
     if (carry != 0) {
         if ((longitud + carry) > NUM_LIMIT) {
             numero->longitudError = Overflow;
-        } else {
+            return;
+        } else { //Habria que ver que ese else funcione bien, me da mala espina
             memcpy(&numero->entero[1], numero->entero, longitud + 2);
             numero->entero[0] = (char) (carry + '0');
             numero->longitudError = longitud + 1;

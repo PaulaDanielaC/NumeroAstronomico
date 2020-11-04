@@ -5,7 +5,7 @@
 
 NumeroAstronomico *read(FILE *stream) {
     NumeroAstronomico *numero = malloc(sizeof(NumeroAstronomico));
-    stream = fopen(ARCHIVO_BINARIO, "rb");
+    stream = fopen(ARCHIVO_BINARIO, "rb"); //Esto no tendria que estar afuera?
     int i = 0;
 
     if (stream == NULL) {
