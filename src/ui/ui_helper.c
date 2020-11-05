@@ -82,7 +82,7 @@ void guardarResultado(NumeroAstronomico *num) {
     printf("Elija un formato de archivo\n");
     printf("1- Texto\n");
     printf("2- Binario\n");
-    printf("Opcion: ");
+    printf("Opcion:");
     fflush(stdin);
     int opcion = getc(stdin);
 
@@ -110,6 +110,7 @@ void cargarResultado() {
     printf("Elija un formato de archivo\n");
     printf("1- Texto\n");
     printf("2- Binario\n");
+    printf("Opcion:");
     fflush(stdin);
     int opcion = getc(stdin);
 
