@@ -244,13 +244,16 @@ void dividirNumero(char *numero, unsigned int cantGrupos) {
     int saltosLinea = 0;
     int longitud = (int) strlen(numero);
     unsigned int charPorLinea = (cantGrupos * 3) + cantGrupos;
-    char *cadenaAux = (char *) malloc(sizeof(char*)* longitud);
+    char *cadenaAux = (char *) malloc(longitud);
     int i = 0;
 
-    if (charPorLinea > longitud || cadenaAux == NULL) {
+    if (cadenaAux == NULL) {
         perror("Error en la funcion mostrar");
         return;
     }
+
+    if (charPorLinea > longitud || cadenaAux == NULL)
+        return;
 
     while (i <= charPorLinea && i < longitud) {
         cadenaAux[i] = numero[i];
