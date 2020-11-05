@@ -5,7 +5,7 @@
 
 FILE *mostrar(NumeroAstronomico *num, unsigned int cantGrupos, FILE *stream) {
 
-    char *cadena = num->entero;
+    char *cadena = (char*) malloc(num->longitudError);
     ponerPuntos(num, cadena);
     dividirNumero(cadena, cantGrupos);
     fprintf(stream, "%s\n", cadena);

@@ -118,7 +118,7 @@ void cargarResultado() {
             memcpy(num, scan(stream), sizeof(NumeroAstronomico));
             break;
         case 50:
-            memcpy(num,read(stream),sizeof(NumeroAstronomico));
+            memcpy(num, read(stream),sizeof(NumeroAstronomico));
             break;
         default:
             printf("Opcion invalida\n");
