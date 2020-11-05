@@ -48,7 +48,6 @@ void menu(NumeroAstronomico *result) {
             exit(Ninguno);
         default:
             printf("Opcion Invalida, ingrese nuevamente\n\n");
-            break;
     }
 
     system("cls");

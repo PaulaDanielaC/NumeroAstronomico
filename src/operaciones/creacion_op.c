@@ -22,6 +22,7 @@ NumeroAstronomico *crearDesdeCifraSeguidaDeCeros(unsigned int cifra, unsigned in
     sprintf(numero, "%d", cifra);
     char* ceros = agregarCerosAlfinal(cantCeros);
     strcat(numero, ceros);
+    printf("Numero que se genera: %s\n",numero);
 
     numAstro->entero = numero;
     numAstro->longitudError = cifra + cantCeros;
