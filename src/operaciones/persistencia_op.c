@@ -56,10 +56,9 @@ NumeroAstronomico *scan(FILE *stream) {
         return NULL;
     }
 
-    while (!feof(stream)) {
-        fread(&numero->entero[i], 1, sizeof(char), stream);
+    while (fread(numero->entero, sizeof(char),1, stream))
         i++;
-    }
+
 
     numero->longitudError = (int) strlen(numero->entero);
     printf("resultado archivo %s\n", numero->entero);
