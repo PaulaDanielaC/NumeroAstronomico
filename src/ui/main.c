@@ -23,6 +23,7 @@ int main() {
 void menu(NumeroAstronomico *result) {
     printf("1.Sumar valores\n2.Verificar igualdad de dos numeros\n3.Verificar menor valor\n"
            "4.Guardar resultados\n5.Cargar resultados\n6.Salir\n\nOpcion:");
+    fflush(stdin);
     int opcion = getc(stdin);
 
     switch (opcion) {

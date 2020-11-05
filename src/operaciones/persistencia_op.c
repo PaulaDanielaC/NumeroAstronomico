@@ -48,17 +48,18 @@ FILE *write(NumeroAstronomico *num, FILE *stream) {
 
 NumeroAstronomico *scan(FILE *stream) {
     NumeroAstronomico *numero = malloc(sizeof(NumeroAstronomico));
+    fflush(stdin);
+    fflush(stdout);
     stream = fopen(ARCHIVO_TEXTO, "r");
-    int i = 0;
 
+    int i = 0;
     if (stream == NULL) {
         perror("Error leyendo el archivo: \n");
         return NULL;
     }
 
-    while (fread(numero->entero, sizeof(char),1, stream))
+    while (fread(&numero->entero[i], sizeof(char),1, stream))
         i++;
-
 
     numero->longitudError = (int) strlen(numero->entero);
     printf("resultado archivo %s\n", numero->entero);
