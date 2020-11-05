@@ -5,7 +5,7 @@
 
 NumeroAstronomico *read(FILE *stream) {
     NumeroAstronomico *numero = malloc(sizeof(NumeroAstronomico));
-    stream = fopen(ARCHIVO_BINARIO, "rb"); //Esto no tendria que estar afuera?
+    stream = fopen(ARCHIVO_BINARIO, "rb");
     int i = 0;
 
     if (stream == NULL) {
@@ -24,7 +24,7 @@ NumeroAstronomico *read(FILE *stream) {
     return numero;
 }
 
-FILE *print(NumeroAstronomico *num, FILE *stream) { //Listo, funciona
+FILE *print(NumeroAstronomico *num, FILE *stream) {
 
     if (stream == NULL) {
         perror("Error creando el archivo: \n");
@@ -36,7 +36,7 @@ FILE *print(NumeroAstronomico *num, FILE *stream) { //Listo, funciona
     return stream;
 }
 
-FILE *write(NumeroAstronomico *num, FILE *stream) { // Listo, funciona
+FILE *write(NumeroAstronomico *num, FILE *stream) {
     if (stream == NULL) {
         perror("Error creando el archivo: \n");
         return NULL;

@@ -40,7 +40,7 @@ NumeroAstronomico *crearAleatorio() {
 
 NumeroAstronomico *crearDesdeCadena(char *cadena) {
     NumeroAstronomico *num = (NumeroAstronomico *) malloc(sizeof(NumeroAstronomico));
-    
+
     if (cadena != NULL) {
         int longitud = (int) strlen(cadena);
         num->entero = (char*) malloc(longitud);
@@ -49,6 +49,7 @@ NumeroAstronomico *crearDesdeCadena(char *cadena) {
         num->longitudError = longitud;
         free(cadena);
     } else {
+        free(cadena);
         num->longitudError = CadenaInvalida;
     }
 
