@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <mem.h>
+#include <errno.h>
 
 NumeroAstronomico *crearNumero();
 NumeroAstronomico* armarCifraSeguidaDeCeros();
@@ -81,6 +82,7 @@ void guardarResultado(NumeroAstronomico *num) {
     printf("Elija un formato de archivo\n");
     printf("1- Texto\n");
     printf("2- Binario\n");
+    printf("Opcion: ");
     fflush(stdin);
     int opcion = getc(stdin);
 
@@ -116,7 +118,7 @@ void cargarResultado() {
             memcpy(num, scan(stream), sizeof(NumeroAstronomico));
             break;
         case 50:
-            num = read(stream);
+            memcpy(num,read(stream),sizeof(NumeroAstronomico));
             break;
         default:
             printf("Opcion invalida\n");
@@ -136,7 +138,7 @@ NumeroAstronomico *crearNumero() {
 
     printf("1.Ingresar valor\n2.Ingresar cifra significativa y cantidad de ceros\n"
            "3.Crear numero aleatorio\n");
-    printf("Opcion:\n");
+    printf("Opcion:");
     fflush(stdin);
     opcion = getc(stdin);
 
@@ -163,7 +165,7 @@ NumeroAstronomico* armarCifraSeguidaDeCeros() {
     unsigned int cifra, cantCeros;
     fflush(stdin);
 
-    printf("Ingrese la cifra: \n");
+    printf("Ingrese la cifra:");
     scanf("%d", &cifra);
 
     if (inputInvalido(cifra)) {
@@ -171,7 +173,7 @@ NumeroAstronomico* armarCifraSeguidaDeCeros() {
         return NULL;
     }
 
-    printf("Ingrese la cantidad de ceros: \n");
+    printf("Ingrese la cantidad de ceros:");
     scanf("%d", &cantCeros);
 
     if (inputInvalido(cantCeros)) {
@@ -217,7 +219,7 @@ void ponerPuntos(NumeroAstronomico *num, char *numero) {
 }
 
 char* obtenerInput() {
-    printf("Numero:\n");
+    printf("Numero:");
     char* cadena = (char*) malloc(NUM_LIMIT);
     int cantCaracteres = 0;
     char input;
@@ -244,7 +246,7 @@ void dividirNumero(char *numero, unsigned int cantGrupos) {
     int saltosLinea = 0;
     int longitud = (int) strlen(numero);
     unsigned int charPorLinea = (cantGrupos * 3) + cantGrupos;
-    char *cadenaAux = (char *) malloc(sizeof(char*)* longitud);
+    char *cadenaAux = (char *) malloc(sizeof(char*) * longitud);
     int i = 0;
 
     if (charPorLinea > longitud || cadenaAux == NULL) {
