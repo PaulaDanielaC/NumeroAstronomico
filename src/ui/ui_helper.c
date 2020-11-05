@@ -254,7 +254,7 @@ void dividirNumero(char *numero, unsigned int cantGrupos) {
         return;
     }
 
-    if (charPorLinea > longitud || cadenaAux == NULL)
+    if (charPorLinea > longitud)
         return;
 
     while (i <= charPorLinea && i < longitud) {
