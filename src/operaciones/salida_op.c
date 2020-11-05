@@ -5,10 +5,11 @@
 
 FILE* mostrar(NumeroAstronomico *num, unsigned int cantGrupos, FILE *stream) {
 
-    char *cadena = (char*) malloc(sizeof(char) * num->longitudError);
+    char *cadena = num->entero;
     ponerPuntos(num, cadena);
     dividirNumero(cadena, cantGrupos);
     fprintf(stream, "%s\n", cadena);
+    fclose(stream);
     system("pause");
 
     return stream;

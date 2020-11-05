@@ -228,7 +228,6 @@ char* obtenerInput() {
             cadena[cantCaracteres] = input;
             cantCaracteres++;
         } else {
-            free(cadena);
             return NULL;
         }
     }
@@ -245,10 +244,11 @@ void dividirNumero(char *numero, unsigned int cantGrupos) {
     int saltosLinea = 0;
     int longitud = (int) strlen(numero);
     unsigned int charPorLinea = (cantGrupos * 3) + cantGrupos;
-    char *cadenaAux = (char *) malloc(sizeof(char) * longitud);
+    char *cadenaAux = (char *) malloc(sizeof(char*)* longitud);
     int i = 0;
 
-    if (charPorLinea > longitud) {
+    if (charPorLinea > longitud || cadenaAux == NULL) {
+        perror("Error en la funcion mostrar");
         return;
     }
 

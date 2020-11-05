@@ -8,7 +8,7 @@ int main() {
     printf("\n\t\t\tCALCULADORA DE NUMEROS ASTRONOMICOS DE IGNACIO GARCIA Y PAULA CHITTARO\n\n"
            "Seleccione la operacion que quiera realizar:\n");
 
-    NumeroAstronomico *result = (NumeroAstronomico *) malloc(sizeof(NumeroAstronomico));
+    NumeroAstronomico *result = (NumeroAstronomico *) calloc(1, sizeof(NumeroAstronomico));
     result->longitudError = Ninguno;
 
     while (!tieneError(result))

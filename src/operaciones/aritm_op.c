@@ -9,7 +9,7 @@ int obtenerNumMasDigitos(int, int);
 
 int checkCarry(int *);
 
-NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) { //Documentado
+NumeroAstronomico *sumar(NumeroAstronomico *num1, NumeroAstronomico *num2) {
     NumeroAstronomico *resultado = (NumeroAstronomico *) malloc(sizeof(NumeroAstronomico));
     int numMasLargo = obtenerNumMasDigitos(num1->longitudError, num2->longitudError);
     resultado->entero = malloc(numMasLargo + 1);
@@ -88,7 +88,7 @@ void setOverflowDigit(NumeroAstronomico *numero, int carry, int longitud) {
         if ((longitud + carry) > NUM_LIMIT) {
             numero->longitudError = Overflow;
             return;
-        } else { //Habria que ver que ese else funcione bien, me da mala espina
+        } else {
             memcpy(&numero->entero[1], numero->entero, longitud + 2);
             numero->entero[0] = (char) (carry + '0');
             numero->longitudError = longitud + 1;
