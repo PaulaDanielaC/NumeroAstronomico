@@ -89,9 +89,11 @@ void setOverflowDigit(NumeroAstronomico *numero, int carry, int longitud) {
             numero->longitudError = Overflow;
             return;
         } else {
+//          TODO Fix this
             memcpy(&numero->entero[1], numero->entero, longitud + 2);
             numero->entero[0] = (char) (carry + '0');
-            numero->longitudError = longitud + 1;
+            longitud += 1;
+            numero->longitudError = longitud;
         }
     }
 
